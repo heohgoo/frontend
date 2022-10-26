@@ -57,11 +57,24 @@
         <select v-model="age" class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in ageList">{{ item.value }}</option> 
         </select>
-        <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식(아래 선택지들 중 하나를 골라주세요.)</p>
+        <!-- <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식(아래 선택지들 중 하나를 골라주세요.)</p>
         <select class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in foodList">{{ item.value }}</option> 
-        </select>
+        </select> -->
+        <div>
+        <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식(중복하여 선택할 수 있어요.)</p>
+        <div style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">
+        <input type="checkbox" v-model="checkedValues" id="국밥" name="국밥" value="국밥류">국밥류
+        <input type="checkbox" v-model="checkedValues" id="탕찌개" name="탕찌개" value="탕찌개류">탕/찌개류
+        <input type="checkbox" v-model="checkedValues" id="고기" name="고기" value="고기류">고기류
+        <input type="checkbox" v-model="checkedValues" id="중식" name="중식" value="중식">중식
+        <input type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">양식
+        <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">샐러드
+        <input type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">패스트푸드
+        </div>
+        {{ checkedValues }}
       </div>
+    </div>
       <div>
       <button class="loginbtn" @click="register">확인</button>
       </div>
@@ -73,9 +86,10 @@
 import axios from "axios";
 
 export default {
-  name: "Login",
+  name: "Signin",
   data(){
     return {
+      checkedValues : [],
       complete: true,
       inputid: "",
       inputpw: "",
@@ -118,16 +132,61 @@ export default {
           value: "60대 이상",
         },
       ],
-      foodList: [
-        {
-          key: "noodle",
-          value: "라면",
-        },
-        {
-          key: "chicken",
-          value: "치킨",
-        }
-      ],
+      // foodList: [
+      //   {
+      //     key: "국밥",
+      //     value: "국밥류",
+      //   },
+      //   {
+      //     key: "탕",
+      //     value: "탕류",
+      //   },
+      //   {
+      //     key: "마라탕",
+      //     value: "마라탕",
+      //   },
+      //   {
+      //     key: "찌개",
+      //     value: "찌개류",
+      //   },
+      //   {
+      //     key: "고기",
+      //     value: "고기구이",
+      //   },
+      //   {
+      //     key: "까스",
+      //     value: "까스류",
+      //   },
+      //   {
+      //     key: "중식면",
+      //     value: "중식(면류)",
+      //   },
+      //   {
+      //     key: "중식밥",
+      //     value: "중식(밥류)",
+      //   },
+      //   {
+      //     key: "샐러드",
+      //     value: "샐러드",
+      //   },
+      //   {
+      //     key: "치킨",
+      //     value: "치킨",
+      //   },
+      //   {
+      //     key: "피자",
+      //     value: "피자",
+      //   },
+      //   {
+      //     key: "햄버거",
+      //     value: "햄버거",
+      //   },
+      //   {
+      //     key: "양식",
+      //     value: "양식(면류)",
+      //   },
+
+      // ],
     }
   },
   methods: {

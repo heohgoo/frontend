@@ -1,7 +1,7 @@
 <template>
-   <head>
+   <!-- <head>
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-   </head>
+   </head> -->
    <!-- build시 삽입 -->
   <div class="upload-image" :style="`background-image:url(${foodimage})`">
   <div class="d-flex justify-content-center">
@@ -52,7 +52,8 @@ export default {
             frm.append('file', this.foodfile[0])
             console.log(this.foodfile[0])
             axios
-            .post('/predict', frm, 
+            // .post('/predict', frm, 
+            .post('https://www.foodwebrs.com/predict', frm, 
             {
                 headers : {
                     'Content-Type' : 'multipart/form-data'
@@ -60,7 +61,7 @@ export default {
             }
             )
             .then((result) => {
-                this.foodname = result.data;
+                this.foodname = result.data.class_name;
                 this.$emit('sfood', this.foodname)
                 console.log(this.foodname)
             })
@@ -70,17 +71,22 @@ export default {
 
         },
         recommend() {
-             axios
-             .post('/rmfood', { "input_list" : this.selectedfoodlist })
-             .then((result) => {
+            if (this.wmsg != ""){
+                this.$emit('erasefood')
+                this.$emit('sfood', this.wmsg)
+            }
+            console.log(this.selectedfoodlist)
+            axios
+            .post('/rmfood', { "input_list" : this.selectedfoodlist })
+            .then((result) => {
                  console.log(this.selectedfoodlist)
                  console.log(result)
                  this.foodlist = result.data.rmfood;
                  this.$emit('foodlists', this.foodlist)
                  this.$emit('back', 1)
                  this.isLoading = true;
-             })
-             .catch((err)=>{
+            })
+            .catch((err)=>{
             console.log(err)
         }) 
         },

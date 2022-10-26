@@ -13,7 +13,7 @@
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
   <Recommend v-if="num == 2" num="num" :foodlist="foodlist" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" num="num" @change="change"/>
-  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @foodlists="foodlists" @sfood="sfood" :selectedfoodlist="selectedfoodlist"/>
+  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @foodlists="foodlists" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/>
   <Signin v-if="num == 5" num="num" @change="change"/>
   <!-- @foodlists="foodlists" -->
 
@@ -84,6 +84,10 @@ export default {
 
     sfood(value) {
       this.selectedfoodlist.push(value);
+    },
+
+    erasefood() {
+      this.selectedfoodlist.splice(this.selectedfoodlist.length-1, 1)
     }
   }
 }

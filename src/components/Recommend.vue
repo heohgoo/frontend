@@ -1,7 +1,21 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <div class="recommend">
-      <h1 class="list">오늘의 추천 음식 리스트!</h1>
+      <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
+      <div class="foods">
+        <div class="food-1"></div>
+        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[0] }}&nbsp;</span>
+        <input type="checkbox"/>
+        <div class="food-2"></div>
+        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[1] }}&nbsp;</span>
+        <input type="checkbox"/>
+        <slot></slot>
+        <div class="food-3"></div>
+        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[2] }}&nbsp;</span>
+        <input type="checkbox"/>
+        <slot></slot>
+      </div>
+        <h4 class="headerlist">당신과 비슷한 성향을 가진 사람들은 어떤 음식을 골랐을까요?</h4>
       <div class="foods">
         <div class="food-1"></div>
         <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[0] }}&nbsp;</span>
@@ -55,10 +69,11 @@ export default {
 </script>
 
 <style>
-.list{
-  font-size:20px; 
+.headerlist{
+  font-size:16px; 
   margin-top:10px; 
   margin-left:10px;
+  font-weight:bold;
 }
 
 
@@ -155,8 +170,8 @@ export default {
 }
 
 .food-1 {
-width: 300px;
-height: 300px;
+width: 50px;
+height: 50px;
 border-radius:50%;
 /* background-image: url(https://m.convenii.com/web/upload/NNEditor/20210810/mobile/59ce28fbdad73f939a444d57f286bb1a_1628586790.jpg); */
 background-color: white;
