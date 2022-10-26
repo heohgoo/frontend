@@ -48,7 +48,7 @@
           />
           <label for="password2" style="font-family: 'Do Hyeon', sans-serif;">3.비밀번호확인</label>
         </div>
-        <p style="margin-top:0px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white; text-align:center">@아래는 정확한 추천 결과를 보장하기 위해 수집하는 정보들입니다.</p>
+        <p style="margin-top:0px; font-size:16px; font-family: 'Do Hyeon', sans-serif; color:white; text-align:center">@아래는 정확한 추천 결과를 보장하기 위해 수집하는 정보들입니다.</p>
         <p style="margin-top:0px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">4.성별</p>
         <select v-model="gender" class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in genderList">{{ item.value }}</option> 
@@ -69,7 +69,7 @@
         <input type="checkbox" v-model="checkedValues" id="고기" name="고기" value="고기류">고기류
         <input type="checkbox" v-model="checkedValues" id="중식" name="중식" value="중식">중식
         <input type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">양식
-        <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">샐러드
+        <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드"><br>샐러드
         <input type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">패스트푸드
         </div>
         {{ checkedValues }}
