@@ -72,6 +72,7 @@ export default {
       console.log(result)
       if (result.data.code == 200){
         this.$emit("change", 1)
+        this.$emit("idinput", this.inputid)
       }
       else{
         this.$emit("change", 0)

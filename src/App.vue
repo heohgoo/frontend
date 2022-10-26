@@ -7,8 +7,11 @@
     <ul class="header-button-left">
       <button v-if="num >= 1 && num != 4 && num != 5" @click="num -= 1" class="backbtn">&lt;뒤로</button>
     </ul>
+    <ul class="header-button-right">
+      ID : {{ id }}
+    </ul>
     </div>
-  <Login v-if="num == 0" @change="change" @signin="signin"/>
+  <Login v-if="num == 0" @change="change" @signin="signin" @idinput="idinput"/>
   <Select v-if="num == 1"  num="num" @change="change" @move="move" @recog="recog" @foodupload="foodupload" :foodimage="foodimage"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
   <Recommend v-if="num == 2" num="num" :foodlist="foodlist" @change="change"></Recommend>
@@ -38,6 +41,7 @@ export default {
       foodfile: "",
       foodlist: ['탕수육', '햄버거', '치킨'],
       selectedfoodlist: [],
+      id: "",
     }
   },
   components: {
@@ -57,6 +61,10 @@ export default {
       this.num=value;
     },
 
+    idinput(value){
+      this.id=value;
+    },
+
     move(value){
       this.num=value;
     },
@@ -71,6 +79,7 @@ export default {
 
     first(){
       this.num = 0
+      this.id = ""
       this.selectedfoodlist.splice(0, this.selectedfoodlist.length)
     },
 
@@ -138,13 +147,12 @@ ul {
   margin-top: 40px;
 }
 .header-button-right {
-  color: rgb(82, 200, 247);
-  font-family: 'Jua', sans-serif;
+  color: rgb(0, 0, 0);
+  font-family: 'Gowun Dodum', sans-serif;
   float: right;
   width: 60px;
   cursor: pointer;
-  margin-top: 60px;
-  margin-right: 20px;
+  margin-top: 40px;
 }
 
 #app {
@@ -192,7 +200,7 @@ ul {
   top: 0;
 }
 .header-button-left {
-  color: rgb(82, 200, 247);
+  color: black;
   font-style: bold;
   float: left;
   width: 80px;
@@ -203,13 +211,13 @@ ul {
   margin-top: 40px;
 }
 .header-button-right {
-  color: rgb(82, 200, 247);
+  color: black;
   font-family: 'Jua', sans-serif;
   float: right;
   width: 60px;
   cursor: pointer;
-  margin-top: 60px;
-  margin-right: 20px;
+  margin-top: 40px;
+  margin-left: 0px;
 }
 
 #app {
