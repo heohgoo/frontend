@@ -15,7 +15,7 @@
         <input type="checkbox"/>
         <slot></slot>
       </div>
-        <h4 class="headerlist">당신과 같은 음식 취향을 가진 사람들은 어떤 음식을 골랐을까요?</h4>
+        <h4 class="headerlist">당신과 음식 취향이 비슷한 사람들이 만족했던 음식들이에요.</h4>
       <div class="foods">
         <div class="food-1"></div>
         <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[0] }}&nbsp;</span>

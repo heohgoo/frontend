@@ -69,7 +69,7 @@
         <input type="checkbox" v-model="checkedValues" id="고기" name="고기" value="고기류">고기류
         <input type="checkbox" v-model="checkedValues" id="중식" name="중식" value="중식">중식
         <input type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">양식
-        <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드"><br>샐러드
+        <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">샐러드 <br>
         <input type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">패스트푸드
         </div>
         {{ checkedValues }}
