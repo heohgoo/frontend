@@ -35,7 +35,8 @@ export default {
             foodname : "",
             scene:0,
             wmsg:"음식 이름을 적어주세요.",
-            foodlist:[],
+            cbfoodlist:[],
+            cbfoodurl:[],
             isLoading: true,
         }
     },
@@ -52,8 +53,8 @@ export default {
             frm.append('file', this.foodfile[0])
             console.log(this.foodfile[0])
             axios
-            // .post('/predict', frm, 
-            .post('https://www.foodwebrs.com/predict', frm, 
+            .post('/predict', frm, 
+            // .post('https://www.foodwebrs.com/predict', frm, 
             {
                 headers : {
                     'Content-Type' : 'multipart/form-data'
@@ -77,12 +78,14 @@ export default {
             }
             console.log(this.selectedfoodlist)
             axios
-            .post('/rmfood', { "input_list" : this.selectedfoodlist })
+            .post('/cbfalgorithm', { "input_list" : this.selectedfoodlist })
             .then((result) => {
                  console.log(this.selectedfoodlist)
                  console.log(result)
-                 this.foodlist = result.data.rmfood;
-                 this.$emit('foodlists', this.foodlist)
+                 this.cbfoodlist = result.data.rmlist
+                 this.cbfoodurl = result.data.urllist
+                 this.$emit('cbfoodlists', this.cbfoodlist)
+                 this.$emit('cbfoodurl', this.cbfoodurl)
                  this.$emit('back', 1)
                  this.isLoading = true;
             })

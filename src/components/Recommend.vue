@@ -3,44 +3,26 @@
   <div class="recommend">
       <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
       <div class="foods">
-        <div class="food-1"></div>
-        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[0] }}&nbsp;</span>
-        <input type="checkbox"/>
-        <div class="food-2"></div>
-        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[1] }}&nbsp;</span>
+        <div class="food-1" v-for="(a,i) in cffoodlist" :key="i" :style="{ backgroundImage: `url(${ cfurllist[i] })`}">
+        <span style="font-family: 'Black Han Sans', sans-serif">{{ cffoodlist[i] }}</span>
         <input type="checkbox"/>
         <slot></slot>
-        <div class="food-3"></div>
-        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[2] }}&nbsp;</span>
-        <input type="checkbox"/>
-        <slot></slot>
-      </div>
-        <h4 class="headerlist">당신과 음식 취향이 비슷한 사람들이 만족했던 음식들이에요.</h4>
-      <div class="foods">
-        <div class="food-1"></div>
-        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[0] }}&nbsp;</span>
-        <input type="checkbox"/>
-        <div class="food-2"></div>
-        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[1] }}&nbsp;</span>
-        <input type="checkbox"/>
-        <slot></slot>
-        <div class="food-3"></div>
-        <span style="font-family: 'Black Han Sans', sans-serif;">{{ foodlist[2] }}&nbsp;</span>
-        <input type="checkbox"/>
-        <slot></slot>
-        <!-- <div class="food-4"></div>
-        <input type="checkbox"/>
-        <div class="food-5"></div>
-        <input type="checkbox"/>
-        <div class="food-6"></div>
-        <input type="checkbox"/> -->
+        </div>
     </div>
-    <button class="rebutton">다시추천</button>
-    <p class="tipletter" style="text-align:center"><br><br><br>마음에 드는 음식이 있으면,오른쪽 아래 체크박스에 체크해주세요!</p>
+        <h4 class="headerlist">당신과 음식 취향이 비슷한 사람들이 만족했던 음식들이에요.</h4>
+        <div class="foods">
+        <div class="food-1" v-for="(a,i) in cffoodlist" :key="i" :style="{ backgroundImage: `url(${ cfurllist[i] })`}">
+        <span style="font-family: 'Black Han Sans', sans-serif">{{ cffoodlist[i] }}</span>
+        <input type="checkbox"/>
+        <slot></slot>
+        </div>
+    </div>
+    <!-- <button class="rebutton" @click="a">다시추천</button> -->
+    <p class="tipletter" style="text-align:center"><br><br><br>마음에 드는 음식이 있으면,왼쪽 위 체크박스에 체크해주세요!</p>
   </div>
   <div class="footer">
         <div class="tip">
-            <p class="tipletter"><img class="tipimg" src="../assets/꿀팁.jpg">마음에 드는 음식이 없다면, '다시추천'을 눌러보세요!</p>
+            <p class="tipletter"><img class="tipimg" src="../assets/꿀팁.jpg">한 줄의 리뷰는 저희 앱에 좋은 정보가 됩니다.</p>
         </div>  
         <button class="newbutton" style="margin-top:20px;" @click="next">리뷰 남기기</button>
     </div>
@@ -51,11 +33,15 @@ export default {
     name : 'Recommend',
     data(){
         return{
-            
+
         }
     },
     props: {
       foodlist : Array,
+      cffoodlist : Array,
+      cfurllist : Array,
+      cbfoodlilst : Array,
+      cburllist : Array,
     },
     methods: {
         next(){
@@ -172,8 +158,7 @@ export default {
 .food-1 {
 width: 50px;
 height: 50px;
-border-radius:50%;
-/* background-image: url(https://m.convenii.com/web/upload/NNEditor/20210810/mobile/59ce28fbdad73f939a444d57f286bb1a_1628586790.jpg); */
+border-radius:10%;
 background-color: white;
 margin: 10px 10px 10px auto;
 padding: 8px;
@@ -187,7 +172,6 @@ border: 1.5px solid rgb(63, 64, 68);
 width: 300px;
 height: 300px;
 border-radius:50%;
-/* background-image: url(https://data.0app0.com/diet/shop/goods/20210219/20210219151516_6436453018_2.jpg); */
 background-color: white;
 margin: 10px 10px 10px auto;
 padding: 8px;
@@ -201,7 +185,6 @@ border: 1.5px solid rgb(63, 64, 68);
 width: 300px;
 height: 300px;
 border-radius:50%;
-/* background-image: url(https://cdn.dominos.co.kr/admin/upload/goods/20200311_x8StB1t3.jpg); */
 background-color: white;
 margin: 10px 10px 10px auto;
 padding: 8px;
@@ -372,7 +355,7 @@ border: 1.5px solid rgb(63, 64, 68);
 .food-1 {
 width: 300px;
 height: 300px;
-border-radius:50%;
+border-radius:10%;
 /* background-image: url(https://m.convenii.com/web/upload/NNEditor/20210810/mobile/59ce28fbdad73f939a444d57f286bb1a_1628586790.jpg); */
 background-color: white;
 margin: 10px 10px 10px auto;

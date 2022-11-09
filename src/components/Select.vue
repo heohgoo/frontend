@@ -1,5 +1,11 @@
 <template>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+  <div class="d-flex justify-content-center">
+  <button v-if="isLoading==false" class="btn btn-dark" type="button" style="margin-top:0%" disabled>
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  로딩 중...
+  </button>
+  </div>
   <div class="select">
     <ul class="select-button-plus">
       <input
@@ -12,11 +18,12 @@
       <label for="file" class="input-plus">음식 사진 선택</label>
     </ul>
     <img class="wait" src="../assets/음식선택.jpg"/>
-    <p class="add">갤러리에서 한 번 확인해볼까요?<br><br>@인스타그램에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
+    <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
   </div>
   <div class="recommend-button">
     <ul class="recommend-button-plus">
-    <label @click="next">음식 추천</label>
+    <label @click="cfrecommend">음식 추천</label>
+    <!-- <label @click="[next(), cfrecommend()]">음식 추천</label> -->
     </ul>
     <img class="wait" src="../assets/음식추천.jpg"/>
     <p class="add">오늘의 맛아,맛점,맛저 메뉴는?</p>
@@ -37,6 +44,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 
 export default {
   name : "Select",
@@ -44,16 +53,16 @@ export default {
     return {
       image: "",
       foodfile: "",
+      cfrmlist: [],
+      cfrmurl: [],
+      isLoading: true,
     }
   },
   props : {
-    num: Number
+    num: Number,
+    id: String,
   },
   methods : {
-    next() {
-      this.$emit('change', 2);
-    },
-
     upload(e) {
       let a = e.target.files;
       console.log(a[0]); //일단 첫번째 파일만
@@ -64,7 +73,27 @@ export default {
       this.foodfile = a[0];
       this.$emit('foodupload', a)
       console.log(a)
-    }
+    },
+
+    cfrecommend() {
+      this.isLoading = false
+      console.log(this.id)
+      axios
+      .post('/cfalgorithm', { "username" : this.id })
+      .then((result) => {
+              console.log(result.data)
+              this.cfrmlist = result.data.rmlist
+              this.cfrmurl = result.data.urllist
+              this.$emit('cflist', this.cfrmurl)
+              this.$emit('cffood', this.cfrmlist)
+              this.$emit('change', 2);
+              this.isLoading = true
+            })
+            .catch((err)=>{
+            console.log(err)
+        }) 
+    },
+
   },
 
 }

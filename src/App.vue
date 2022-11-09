@@ -12,11 +12,11 @@
     </ul>
     </div>
   <Login v-if="num == 0" @change="change" @signin="signin" @idinput="idinput"/>
-  <Select v-if="num == 1"  num="num" @change="change" @move="move" @recog="recog" @foodupload="foodupload" :foodimage="foodimage"/>
+  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @cffood="cffood" @recog="recog" @foodupload="foodupload" :foodimage="foodimage"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
-  <Recommend v-if="num == 2" num="num" :foodlist="foodlist" @change="change"></Recommend>
+  <Recommend v-if="num == 2" num="num" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" num="num" @change="change"/>
-  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @foodlists="foodlists" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/>
+  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/>
   <Signin v-if="num == 5" num="num" @change="change"/>
   <!-- @foodlists="foodlists" -->
 
@@ -42,6 +42,10 @@ export default {
       foodlist: ['탕수육', '햄버거', '치킨'],
       selectedfoodlist: [],
       id: "",
+      cffoodlist : [],
+      cfurllist : [],
+      cbfoodlist : [],
+      cburllist : [],
     }
   },
   components: {
@@ -73,6 +77,14 @@ export default {
       this.foodimage=value;
     },
 
+    cflist(value){
+      this.cfurllist=value;
+    },
+
+    cffood(value){
+      this.cffoodlist=value;
+    },
+
     back(value) {
       this.num=value;
     },
@@ -87,8 +99,12 @@ export default {
       this.foodfile = value;
     },
 
-    foodlists(value) {
+    cbfoodlists(value) {
       this.foodlist = value;
+    },
+
+    cbfoodurl(value) {
+      this.cburllist = value;
     },
 
     sfood(value) {
@@ -148,11 +164,12 @@ ul {
 }
 .header-button-right {
   color: rgb(0, 0, 0);
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Jua', sans-serif;
   float: right;
   width: 60px;
-  cursor: pointer;
   margin-top: 40px;
+  margin-left: -15px;
+  margin-right: 0px;
 }
 
 #app {
@@ -214,10 +231,9 @@ ul {
   color: black;
   font-family: 'Jua', sans-serif;
   float: right;
-  width: 60px;
-  cursor: pointer;
   margin-top: 40px;
-  margin-left: 0px;
+  margin-left: -15px;
+  margin-right: 0px;
 }
 
 #app {

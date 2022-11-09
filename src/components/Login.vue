@@ -66,8 +66,8 @@ export default {
     submit() {
       // console.log(this.inputid)
       // console.log(this.inputpw)
-      // axios.post('/user/login', { "username":this.inputid, "password":this.inputpw })
-      axios.post('https://www.foodwebrs.com/user/login', { "username":this.inputid, "password":this.inputpw })
+      axios.post('/user/login', { "username":this.inputid, "password":this.inputpw })
+      // axios.post('https://www.foodwebrs.com/user/login', { "username":this.inputid, "password":this.inputpw })
       .then((result) => {
       console.log(result)
       if (result.data.code == 200){
