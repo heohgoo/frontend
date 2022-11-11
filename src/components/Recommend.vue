@@ -3,7 +3,7 @@
   <div class="recommend">
       <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
       <div class="foods">
-        <div class="food-1" v-for="(a,i) in cffoodlist" :key="i" :style="{ backgroundImage: `url(${ cburllist[i] })`}">
+        <div class="food-1" v-for="(a,i) in cbfoodlist" :key="i" :style="{ backgroundImage: `url(${ cburllist[i] })`}">
         <span style="font-family: 'Black Han Sans', sans-serif">{{ cbfoodlist[i] }}</span>
         <input type="checkbox"/>
         <slot></slot>
