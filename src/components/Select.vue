@@ -79,7 +79,8 @@ export default {
       this.isLoading = false
       console.log(this.id)
       axios
-      .post('/cfalgorithm', { "username" : this.id })
+      .post('https://www.foodwebrs.com/cfalgorithm', { "username" : this.id })
+      // .post('/cfalgorithm', { "username" : this.id })
       .then((result) => {
               console.log(result.data)
               this.cfrmlist = result.data.rmlist

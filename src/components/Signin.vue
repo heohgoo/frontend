@@ -72,7 +72,7 @@
         <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">샐러드 <br>
         <input type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">패스트푸드
         </div>
-        {{ checkedValues }}
+        <!-- {{ checkedValues }} -->
       </div>
     </div>
       <div>
@@ -196,7 +196,7 @@ export default {
       // console.log(this.inputpw2)
       // console.log(this.gender)
       // console.log(this.age)
-      axios.post('https://www.foodwebrs.com/user/register', { "username":this.inputid, "password":this.inputpw, "password2":this.inputpw2, "gender":this.gender, "age":this.age })
+      axios.post('https://www.foodwebrs.com/user/register', { "username":this.inputid, "password":this.inputpw, "password2":this.inputpw2, "gender":this.gender, "age":this.age, "foodtype":this.checkedValues })
       // axios.post('/user/register', { "username":this.inputid, "password":this.inputpw, "password2":this.inputpw2, "gender":this.gender, "age":this.age })
       .then((result) => {
       console.log(result)

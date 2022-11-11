@@ -5,7 +5,7 @@
     </ul>
     <img src="./assets/applogo.jpg" class="logo" @click="first"/>
     <ul class="header-button-left">
-      <button v-if="num >= 1 && num != 4 && num != 5" @click="num -= 1" class="backbtn">&lt;뒤로</button>
+      <button v-if="num > 1 && num != 4 && num != 5" @click="num -= 1" class="backbtn">&lt;뒤로</button>
     </ul>
     <ul class="header-button-right">
       ID : {{ id }}
@@ -100,7 +100,7 @@ export default {
     },
 
     cbfoodlists(value) {
-      this.foodlist = value;
+      this.cbfoodlist = value;
     },
 
     cbfoodurl(value) {

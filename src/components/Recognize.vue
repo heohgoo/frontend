@@ -20,7 +20,8 @@
   <div v-if="scene==1" class="recognize"><p class="recog_info"><img class="wait" src="../assets/answer.jpg"/>이 음식은 '{{ foodname }}'인 거 같아요.</p>
   <p class="truefalse" style="margin-top:10px">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" v-model="wmsg"></textarea>
   </div>
-  <button v-if="scene==1" class="submit" @click="[recommend(),loading()]">확인</button>
+  <button v-if="scene==1" class="submit" @click="recommend">확인</button>
+  <!-- <button v-if="scene==1" class="submit" @click="[recommend(),loading()]">확인</button> -->
   <!-- @click="[back, recommend]" -->
 </template>
 
@@ -53,8 +54,8 @@ export default {
             frm.append('file', this.foodfile[0])
             console.log(this.foodfile[0])
             axios
-            .post('/predict', frm, 
-            // .post('https://www.foodwebrs.com/predict', frm, 
+            // .post('/predict', frm, 
+            .post('https://www.foodwebrs.com/predict', frm, 
             {
                 headers : {
                     'Content-Type' : 'multipart/form-data'
@@ -72,18 +73,20 @@ export default {
 
         },
         recommend() {
-            if (this.wmsg != ""){
+            this.isLoading = false;
+            if (this.wmsg != ""&& this.wmsg !="음식 이름을 적어주세요."){
                 this.$emit('erasefood')
                 this.$emit('sfood', this.wmsg)
             }
-            console.log(this.selectedfoodlist)
             axios
-            .post('/cbfalgorithm', { "input_list" : this.selectedfoodlist })
+            //.post('/cbfalgorithm', { "input_list" : this.selectedfoodlist })
+            .post('https://www.foodwebrs.com/CBFalgorithm', { "food_list" : this.selectedfoodlist })
             .then((result) => {
                  console.log(this.selectedfoodlist)
                  console.log(result)
                  this.cbfoodlist = result.data.rmlist
                  this.cbfoodurl = result.data.urllist
+                 console.log(this.cbfoodlist)
                  this.$emit('cbfoodlists', this.cbfoodlist)
                  this.$emit('cbfoodurl', this.cbfoodurl)
                  this.$emit('back', 1)
@@ -96,9 +99,9 @@ export default {
         erase(){
             this.wmsg="";
         },
-        loading(){
-            this.isLoading = false;
-        }
+        // loading(){
+        //    this.isLoading = false;
+        // } 
     },
 }
 </script>
