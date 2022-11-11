@@ -3,6 +3,9 @@
   <div class="satisfaction">
     <img src="../assets/review.png" class="logor"/>
     리뷰를 작성해주세요
+  <p style="font-family: 'Jua', sans-serif; font-size:14px;">추천받은 음식들 중 지금 먹을 음식이 있나요?</p>
+  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px;">예
+  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn" style="font-size:12px;">아니오
   <div class="star-rating space-x-4 mx-auto">
 	<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 	<label for="5-stars" class="star pr-4">★</label>
@@ -31,6 +34,8 @@ export default {
   data(){
     return{
       msg : "건의사항 있으면 여기에 남겨줘요",
+      checkCrypto1 : false,
+      checkCrypto2 : false,
     }
   },
   methods : {
@@ -40,10 +45,21 @@ export default {
 
     gohome() {
       this.$emit('change', 1)
-    }
+    },
+
+    checky() {
+      if (this.checkCrypto2 == true){
+        this.checkCrypto2 = false
+      }
+    },
+
+    checkn() {
+      if (this.checkCrypto1 == true){
+        this.checkCrypto1 = false
+      }
+    },
   }
- 
-  }
+}
 
 </script>
 
