@@ -18,7 +18,7 @@
       <label for="file" class="input-plus">음식 사진 선택</label>
     </ul>
     <img class="wait" src="../assets/음식선택.jpg"/>
-    <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
+    <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!<br>선택한 음식 리스트 : {{ selectedfoodlist }}</p>
   </div>
   <div class="recommend-button">
     <ul class="recommend-button-plus">
@@ -61,6 +61,7 @@ export default {
   props : {
     num: Number,
     id: String,
+    selectedfoodlist: Array,
   },
   methods : {
     upload(e) {

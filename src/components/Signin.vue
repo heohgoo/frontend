@@ -62,7 +62,7 @@
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in foodList">{{ item.value }}</option> 
         </select> -->
         <div>
-        <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식(중복하여 선택할 수 있어요.)</p>
+        <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식류(여러 개를 선택할 수 있어요.)</p>
         <div style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">
         <input type="checkbox" v-model="checkedValues" id="국밥" name="국밥" value="국밥류">국밥류
         <input type="checkbox" v-model="checkedValues" id="탕찌개" name="탕찌개" value="탕찌개류">탕/찌개류
@@ -71,7 +71,6 @@
         <input type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">양식
         <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">샐러드 <br>
         <input type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">패스트푸드
-        <input type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">양식
         <input type="checkbox" v-model="checkedValues" id="분식" name="분식" value="분식">분식
         </div>
         <!-- {{ checkedValues }} -->

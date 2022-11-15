@@ -12,7 +12,7 @@
     </ul>
     </div>
   <Login v-if="num == 0" @change="change" @signin="signin" @idinput="idinput"/>
-  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @cffood="cffood" @recog="recog" @foodupload="foodupload" :foodimage="foodimage"/>
+  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @cffood="cffood" @recog="recog" @foodupload="foodupload" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
   <Recommend v-if="num == 2" num="num" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" num="num" @change="change"/>
