@@ -42,12 +42,14 @@
     </div>
     <!-- <button class="rebutton" @click="a">다시추천</button> -->
     <p class="tipletter" style="text-align:center; font-family:'Noto Sans KR', sans-serif;"><br><br><br>마음에 드는 음식이 있으면 음식 이미지를 누르세요!</p>
+    <button class="newbutton" style="margin-top:0px; margin-right:20px; font-family:'Noto Sans KR', sans-serif; background:white;" @click="next">리뷰 남기기</button>
   </div>
   <div class="footer">
         <div class="tip">
             <p class="tipletter" style="font-family:'Noto Sans KR', sans-serif; font-size:13px"><img class="tipimg" src="../assets/꿀팁.jpg">한 줄의 리뷰는 추천 알고리즘 최적화에 좋은 정보가 됩니다.</p>
         </div>  
-        <button class="newbutton" style="margin-top:20px; font-family:'Noto Sans KR', sans-serif;" @click="next">리뷰 남기기</button>
+        <p><br></p>
+        <!-- <button class="newbutton" style="margin-top:0px; font-family:'Noto Sans KR', sans-serif;" @click="next">리뷰 남기기</button>  -->
     </div>
 </template>
 
@@ -338,7 +340,7 @@ div {
   top: 10px;
 }
 .footer {
-  margin-top: 60px;
+  margin-top: 0px;
   width: 100%;
   position: sticky;
   bottom: 0;

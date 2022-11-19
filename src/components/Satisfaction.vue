@@ -1,7 +1,7 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <div class="satisfaction">
-    <img src="../assets/review.png" class="logor" style="display:block; margin:0px auto; margin-top:20px;"/>
+    <img src="../assets/review.png" class="logor" style="display:block; margin:0px auto; margin-top:20px; background:white;"/>
         *리뷰 쓰기*
   <p style="font-family: 'Noto Sans KR', sans-serif; font-size:15px; margin-top:20px; font-weight:bold">step1.추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
   <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">네
@@ -21,11 +21,11 @@
   </div> 
   <p style="font-size:15px;">step3.건의사항 남겨주세요.</p>
   <div class="write">
-  <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea> 
+  <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea>
+  <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
   </div>
-  <div>
-    <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
-  </div>
+  <p><br></p>
+    <!-- <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button> -->
 </div>
 
 </template>
@@ -170,7 +170,7 @@ export default {
   border-bottom-right-radius:60px;
   font-size:30px;
   text-align:center;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
   margin-left: 10px;
   margin-right: 10px;
   font-family:'Noto Sans KR', sans-serif;

@@ -41,7 +41,7 @@
         <div id="signin" class="signin"><button style="border-radius:10px; border: 1px solid rgb(0, 0, 0);font-size:25px; font-family:'Noto Sans KR', sans-serif; background:rgb(255,240,240); text-align:center; " @click="signin">회원가입</button></div>
       </div>
       <div>
-      <button class="loginbtn" style="font-family:'Noto Sans KR', sans-serif; font-size:30px; background-color:rgb(201,203,224); margin-top:20px;" @click="submit">로그인</button>
+      <button class="loginbtn" style="font-family:'Noto Sans KR', sans-serif; font-size:30px; background-color:rgb(201,203,224); margin-top:40px;" @click="submit">로그인</button>
       </div>
     </body>
   </html>

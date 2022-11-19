@@ -113,8 +113,8 @@ export default {
 
 <style>
 .upload-image {
-  height: 350px;
-  width: 350px;
+  height: 250px;
+  width: 250px;
   background: white;
   background-size: cover;
   border-radius:30px;
