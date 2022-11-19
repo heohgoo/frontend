@@ -5,7 +5,7 @@
     </ul>
     <img src="./assets/applogo.jpg" class="logo" @click="first"/>
     <ul class="header-button-left">
-      <button v-if="num > 1 && num != 4 && num != 5" @click="num -= 1" class="backbtn">&lt;뒤로</button>
+      <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="num -= 1" class="backbtn">&lt;뒤로</button>
     </ul>
     <ul class="header-button-right">
       <div style="font-family:'Noto Sans KR', sans-serif;">
@@ -14,9 +14,9 @@
     </ul>
     </div>
   <Login v-if="num == 0" @change="change" @signin="signin" @idinput="idinput"/>
-  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @cffood="cffood" @recog="recog" @foodupload="foodupload" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
+  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @cffood="cffood" @recog="recog" @foodupload="foodupload" @removelist="removelist" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
-  <Recommend v-if="num == 2" num="num" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @change="change"></Recommend>
+  <Recommend v-if="num == 2" num="num" :id="id" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" num="num" @change="change"/>
   <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/>
   <Signin v-if="num == 5" num="num" @change="change"/>
@@ -115,6 +115,10 @@ export default {
 
     erasefood() {
       this.selectedfoodlist.splice(this.selectedfoodlist.length-1, 1)
+    },
+
+    removelist() {
+      this.selectedfoodlist = []
     }
   }
 }

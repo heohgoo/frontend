@@ -1,11 +1,12 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <div class="satisfaction">
-    <img src="../assets/review.png" class="logor"/>
-    리뷰를 작성해주세요
-  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:14px;">추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
-  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">Yes
-  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">No
+    <img src="../assets/review.png" class="logor" style="display:block; margin:0px auto; margin-top:20px;"/>
+        *리뷰 쓰기*
+  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:15px; margin-top:20px; font-weight:bold">step1.추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
+  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">네
+  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">아니요
+  <p style="font-size:15px; margin-top:30px; margin-bottom:0px;">step2.별점을 작성해주세요.</p>
   <div class="star-rating space-x-4 mx-auto">
 	<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 	<label for="5-stars" class="star pr-4">★</label>
@@ -18,6 +19,7 @@
 	<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
 	<label for="1-star" class="star">★</label>
   </div> 
+  <p style="font-size:15px;">step3.건의사항 남겨주세요.</p>
   <div class="write">
   <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea> 
   </div>
@@ -29,6 +31,7 @@
 </template>
 
 <script>
+// import axios from "axios"
 
 export default {
   data(){
@@ -36,6 +39,8 @@ export default {
       msg : "건의사항 있으면 여기에 남겨줘요",
       checkCrypto1 : false,
       checkCrypto2 : false,
+      ratings : 0,
+      satisfy : true,
     }
   },
   methods : {
@@ -45,6 +50,24 @@ export default {
 
     gohome() {
       this.$emit('change', 1)
+      if (this.checkCrypto1 == true){
+        this.satisfy = true
+      }
+      else{
+        this.satisfy = false
+      }
+      if (this.msg == "건의사항 있으면 여기에 남겨줘요"){
+        this.msg = ""
+      }
+      console.log(this.satisfy, this.ratings, this.msg)
+      // axios.post('https://www.foodwebrs.com/', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
+      // .then((result) => {
+      //     console.log(result)
+      // }) 
+      // .catch((err)=>{
+      //     console.log(err)
+      // })
+
     },
 
     checky() {
@@ -150,7 +173,7 @@ export default {
   padding-bottom: 20px;
   margin-left: 10px;
   margin-right: 10px;
-  font-family: 'Jua', sans-serif;
+  font-family:'Noto Sans KR', sans-serif;
   background-color: rgb(255,244,226);
   border: 3px solid rgb(63, 64, 68);
 }

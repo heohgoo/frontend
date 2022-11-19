@@ -13,9 +13,9 @@
   <div class="recommend">
     <div class="black-bg" v-if="modal == true">
       <div class="white-bg">
-        <h4>{{ foodname }}</h4>
-        <img :src='`${foodimgurl}`' style="width:30%;">
-        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: rgb(250, 250, 252); font-size:20px; margin-left:10px;"
+        <h4>
+        <img :src='`${foodimgurl}`' style="width:50%;"></h4>
+        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: rgb(250, 250, 252); font-size:20px; margin:0px auto;"
         @click="selectgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
         <p>칼로리(1인분 기준) : </p>
@@ -27,7 +27,7 @@
       <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
       <div class="foods">
         <div class="food-1" v-for="(a,i) in cbfoodlist" :key="i" :style="{ backgroundImage: `url(${ cburllist[i] })`}" @click="selected(cburllist[i], cbfoodlist[i])">
-        <!-- <span style="font-family: 'Black Han Sans', sans-serif; background:white">{{ cbfoodlist[i] }}</span> -->
+        <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black">{{ cbfoodlist[i] }}</span>
         <!-- <input type="checkbox" style="width:20px; height:20px;" @click="close"/> -->
         <slot></slot>
         </div>
@@ -35,7 +35,7 @@
         <h4 class="headerlist">당신과 음식 취향이 비슷한 사람들이 만족했던 음식들이에요.</h4>
         <div class="foods">
         <div class="food-1" v-for="(a,i) in cffoodlist" :key="i" :style="{ backgroundImage: `url(${ cfurllist[i] })`}" @click="selected(cfurllist[i], cffoodlist[i])">
-        <!-- <span style="font-family: 'Black Han Sans', sans-serif; background:white">{{ cffoodlist[i] }}</span> -->
+        <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black">{{ cffoodlist[i] }}</span>
         <!-- <input type="checkbox" style="width:18px; height:18px;"/> -->
         <slot></slot>
         </div>
@@ -52,6 +52,8 @@
 </template>
 
 <script>
+// import axios from "axios"
+
 export default {
     name : 'Recommend',
     data(){
@@ -69,10 +71,20 @@ export default {
       cfurllist : Array,
       cbfoodlist : Array,
       cburllist : Array,
+      id : String,
     },
     methods: {
         next(){
             this.$emit('change', 3);
+            console.log(this.selectedfoodlist)
+            console.log(this.id)
+            // axios.post('https://www.foodwebrs.com/', { "username":this.id, "selectedfoodlist":this.selectedfoodlist })
+            // .then((result) => {
+            // console.log(result)
+            // }) 
+            // .catch((err)=>{
+            //   console.log(err)
+            // })
         },
         selected(foodimgurl, food){
           this.modal = true
@@ -83,11 +95,11 @@ export default {
         close(){
           this.modal = false
           this.good = false
-          this.selectedfoodlist.push(this.foodname)
         },
         selectgood(){
           this.good = true
-        }
+          this.selectedfoodlist.push(this.foodname)
+        },
     }
 
 }
