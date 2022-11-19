@@ -15,7 +15,7 @@
       <div class="white-bg">
         <h4>{{ foodname }}</h4>
         <img :src='`${foodimgurl}`' style="width:30%;">
-        <button v-if="this.good==false" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: rgb(250, 250, 252); font-size:20px; margin-left:10px;"
+        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: rgb(250, 250, 252); font-size:20px; margin-left:10px;"
         @click="selectgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
         <p>칼로리(1인분 기준) : </p>
@@ -60,6 +60,7 @@ export default {
           foodname:"",
           foodimgurl:"",
           good:false,
+          selectedfoodlist:[],
         }
     },
     props: {
@@ -82,6 +83,7 @@ export default {
         close(){
           this.modal = false
           this.good = false
+          this.selectedfoodlist.push(this.foodname)
         },
         selectgood(){
           this.good = true
