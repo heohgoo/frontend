@@ -26,7 +26,7 @@
             name="username"
             placeholder="아이디"
           />
-          <label for="username" style="font-family: 'Do Hyeon', sans-serif;">아이디</label>
+          <label for="username" style="font-family: 'Noto Sans KR', sans-serif;">ID</label>
         </div>
         <div class="input-box">
           <input
@@ -36,12 +36,12 @@
             name="password"
             placeholder="비밀번호"
           />
-          <label for="password" style="font-family: 'Do Hyeon', sans-serif;">비밀번호</label>
+          <label for="password" style="font-family: 'Noto Sans KR', sans-serif;">비밀번호</label>
         </div>
-        <div id="signin" class="signin"><button style="border-radius:15px; border: 1px solid rgb(63, 64, 68);font-size:25px; font-family:'Gowun Dodum', sans-serif; background:rgb(255,244,226); text-align:center; " @click="signin">회원가입</button></div>
+        <div id="signin" class="signin"><button style="border-radius:10px; border: 1px solid rgb(0, 0, 0);font-size:25px; font-family:'Noto Sans KR', sans-serif; background:rgb(255,240,240); text-align:center; " @click="signin">회원가입</button></div>
       </div>
       <div>
-      <button class="loginbtn" @click="submit">로그인</button>
+      <button class="loginbtn" style="font-family:'Noto Sans KR', sans-serif; font-size:30px; background-color:rgb(201,203,224); margin-top:20px;" @click="submit">로그인</button>
       </div>
     </body>
   </html>
@@ -142,7 +142,7 @@ div {
     margin:auto; 
     display:block; 
     font-size:15px; 
-    font-family:'Gowun Dodum', sans-serif;
+    font-family:'Noto Sans KR', sans-serif;
     background:rgb(255,244,226); 
     color: black;
     border-radius:20px;
@@ -153,7 +153,7 @@ div {
     border-radius:10px;
     float:right; 
     font-size:40px; 
-    font-family:'Gowun Dodum', sans-serif;
+    font-family:'Noto Sans KR', sans-serif;
     color: black;
 }
 
@@ -223,7 +223,7 @@ div {
 }
 .white-bg {
   width: 100%; background: white;
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   text-align: center;
   color:black;
   border-radius: 8px;
@@ -232,7 +232,8 @@ div {
 .login {
   width: 100%;
   margin-top:20px;
-  padding-bottom: 100px;
+  margin-bottom:20px;
+  padding-bottom: 20px;
   background-color:rgb(57,61,72);
   border: 1.5px solid rgb(63, 64, 68);
   border-radius:10px;
@@ -254,7 +255,7 @@ div {
     margin:auto; 
     display:block; 
     font-size:30px; 
-    font-family:'Gowun Dodum', sans-serif;
+    font-family:'Noto Sans KR', sans-serif;
     background:rgb(255,244,226); 
     border-radius:20px;
     border: 1px solid rgb(63, 64, 68);
@@ -264,7 +265,7 @@ div {
     border-radius:10px;
     float:right; 
     font-size:40px; 
-    font-family:'Gowun Dodum', sans-serif;
+    font-family:'Noto Sans KR', sans-serif;
     color: black;
 }
 

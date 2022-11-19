@@ -3,9 +3,9 @@
   <div class="satisfaction">
     <img src="../assets/review.png" class="logor"/>
     리뷰를 작성해주세요
-  <p style="font-family: 'Jua', sans-serif; font-size:14px;">추천받은 음식들 중 지금 먹을 음식이 있나요?</p>
-  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px;">예
-  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn" style="font-size:12px;">아니오
+  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:14px;">추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
+  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">Yes
+  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">No
   <div class="star-rating space-x-4 mx-auto">
 	<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 	<label for="5-stars" class="star pr-4">★</label>
@@ -22,7 +22,7 @@
   <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea> 
   </div>
   <div>
-    <button type="submit" class="sbutton" @click="gohome">제출</button>
+    <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
   </div>
 </div>
 

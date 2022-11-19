@@ -8,7 +8,9 @@
       <button v-if="num > 1 && num != 4 && num != 5" @click="num -= 1" class="backbtn">&lt;뒤로</button>
     </ul>
     <ul class="header-button-right">
+      <div style="font-family:'Noto Sans KR', sans-serif;">
       ID : {{ id }}
+      </div>
     </ul>
     </div>
   <Login v-if="num == 0" @change="change" @signin="signin" @idinput="idinput"/>
@@ -129,6 +131,7 @@ ul {
 
 .backbtn{
   border-radius:5px; 
+  height:30px;
   background:rgb(255,244,226); 
   color:black;
   border: 1px solid rgb(63, 64, 68);
@@ -194,6 +197,7 @@ ul {
 }
 
 .backbtn{
+  height:40px;
   border-radius:5px; 
   background:rgb(255,244,226); 
   color:black
@@ -211,7 +215,7 @@ ul {
 .header {
   width: 100%;
   height: 150px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255,255,255);
   padding-bottom: 8px;
   position: sticky;
   top: 0;

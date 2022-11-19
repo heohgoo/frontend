@@ -26,7 +26,7 @@
             name="username"
             placeholder="아이디"
           />
-          <label for="username" style="font-family: 'Do Hyeon', sans-serif;">1.아이디</label>
+          <label for="username" style="font-family: 'Noto Sans KR', sans-serif;">1.ID</label>
         </div>
         <div class="input-box">
           <input
@@ -36,7 +36,7 @@
             name="password"
             placeholder="비밀번호"
           />
-          <label for="password" style="font-family: 'Do Hyeon', sans-serif;">2.비밀번호</label>
+          <label for="password" style="font-family: 'Noto Sans KR', sans-serif;">2.비밀번호</label>
         </div>
         <div class="input-box">
           <input
@@ -46,24 +46,24 @@
             name="password2"
             placeholder="비밀번호확인"
           />
-          <label for="password2" style="font-family: 'Do Hyeon', sans-serif;">3.비밀번호확인</label>
+          <label for="password2" style="font-family: 'Noto Sans KR', sans-serif;">3.비밀번호확인</label>
         </div>
-        <p style="margin-top:0px; font-size:16px; font-family: 'Do Hyeon', sans-serif; color:white; text-align:center">@아래는 정확한 추천 결과를 보장하기 위해 수집하는 정보들입니다.</p>
-        <p style="margin-top:0px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">4.성별</p>
+        <p style="margin-top:0px; font-size:14px; font-family: 'Noto Sans KR', sans-serif; color:white; text-align:center">@아래는 정확한 추천 결과를 보장하기 위해 수집하는 정보들입니다.</p>
+        <p style="margin-top:0px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">4.성별</p>
         <select v-model="gender" class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in genderList">{{ item.value }}</option> 
         </select>
-        <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">5.연령대</p>
+        <p style="margin-top:20px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">5.연령대</p>
         <select v-model="age" class="form-control" style="margin-top:0px; margin-left:2px">
-          <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in ageList">{{ item.value }}</option> 
+          <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Noto Sans KR', sans-serif; color: black" v-for="(item, index) in ageList">{{ item.value }}</option> 
         </select>
         <!-- <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식(아래 선택지들 중 하나를 골라주세요.)</p>
         <select class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in foodList">{{ item.value }}</option> 
         </select> -->
         <div>
-        <p style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">6.평소 선호하던 음식류(여러 개를 선택할 수 있어요.)</p>
-        <div style="margin-top:20px; font-size:18px; font-family: 'Do Hyeon', sans-serif; color:white;">
+        <p style="margin-top:20px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">6.평소 선호하는 음식류(여러 개를 선택할 수 있어요.)</p>
+        <div style="margin-top:20px; font-size:15px; font-family: 'Noto Sans KR', sans-serif; color:white; text-align:center">
         <input type="checkbox" v-model="checkedValues" id="국밥" name="국밥" value="국밥류">국밥류
         <input type="checkbox" v-model="checkedValues" id="탕찌개" name="탕찌개" value="탕찌개류">탕/찌개류
         <input type="checkbox" v-model="checkedValues" id="고기" name="고기" value="고기류">고기류
@@ -77,7 +77,7 @@
       </div>
     </div>
       <div>
-      <button class="loginbtn" @click="register">확인</button>
+      <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-bottom:20px;" @click="register">확인</button>
       </div>
     </body>
   </html>

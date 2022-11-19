@@ -18,7 +18,8 @@
       <label for="file" class="input-plus">음식 사진 선택</label>
     </ul>
     <img class="wait" src="../assets/음식선택.jpg"/>
-    <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!<br>선택한 음식 리스트 : {{ selectedfoodlist }}</p>
+    <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
+    <p class="add" style="font-weight:bold">선택한 음식 리스트 : {{ selectedfoodlist }}</p>
   </div>
   <div class="recommend-button">
     <ul class="recommend-button-plus">
@@ -26,7 +27,9 @@
     <!-- <label @click="[next(), cfrecommend()]">음식 추천</label> -->
     </ul>
     <img class="wait" src="../assets/음식추천.jpg"/>
-    <p class="add">오늘의 맛아,맛점,맛저 메뉴는?</p>
+    <p class="add">오늘의 맛아,맛점,맛저 메뉴는?<br></p>
+    <p class="add" style="font-weight:bold">Content-based filtering, Collaborative filtering</p>
+    <p class="add">기반으로 추천해줍니다.</p>
   </div>
 
   <div class="comment">
@@ -137,7 +140,7 @@ export default {
   width: 100%;
   margin-top:20px;
   padding-bottom: 50px;
-  background-color: white;
+  background-color: rgb(237,225,227);
   border-top: 3px solid rgb(63, 64, 68);
   border-left: 3px solid rgb(63, 64, 68);
   border-right: 3px solid rgb(63, 64, 68);
@@ -152,8 +155,8 @@ export default {
   text-align: center;
   cursor: pointer;
   border-radius: 5px;
-  font-family: 'Gowun Dodum', sans-serif;
-  background: rgb(255,244,226);
+  font-family: 'Noto Sans KR', sans-serif;
+  background: rgb(255,255,255);
   color: black;
   border: 2px solid rgb(63, 64, 68);
   font-size: 24px;
@@ -162,7 +165,7 @@ export default {
 
 .recommend-button{
   width: 100%;
-  background-color: white;
+  background-color: rgb(201,203,224);
   border-top: 3px solid rgb(63, 64, 68);
   border-left: 3px solid rgb(63, 64, 68);
   border-right: 3px solid rgb(63, 64, 68);
@@ -179,9 +182,9 @@ export default {
   text-align: center;
   cursor: pointer;
   border: 2px solid rgb(63, 64, 68);
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;;
   color:black;
-  background: rgb(255,244,226);
+  background: rgb(255,255,255);
   font-size: 24px;
 }
 
@@ -228,7 +231,7 @@ export default {
   width: 100%;
   margin-top:20px;
   padding-bottom: 50px;
-  background-color: white;
+  background-color: rgb(237,225,227);
   border-top: 3px solid rgb(63, 64, 68);
   border-left: 3px solid rgb(63, 64, 68);
   border-right: 3px solid rgb(63, 64, 68);
@@ -243,8 +246,8 @@ export default {
   text-align: center;
   cursor: pointer;
   border-radius: 5px;
-  font-family: 'Gowun Dodum', sans-serif;
-  background: rgb(255,244,226);
+  font-family: 'Noto Sans KR', sans-serif;
+  background: rgb(255,255,255);
   color: black;
   border: 2px solid rgb(63, 64, 68);
   font-size: 24px;
@@ -253,7 +256,7 @@ export default {
 
 .recommend-button{
   width: 100%;
-  background-color: white;
+  background-color: rgb(201,203,224);
   border-top: 3px solid rgb(63, 64, 68);
   border-left: 3px solid rgb(63, 64, 68);
   border-right: 3px solid rgb(63, 64, 68);
@@ -270,9 +273,9 @@ export default {
   text-align: center;
   cursor: pointer;
   border: 2px solid rgb(63, 64, 68);
-  font-family: 'Gowun Dodum', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;;
   color:black;
-  background: rgb(255,244,226);
+  background: rgb(255,255,255);
   font-size: 24px;
 }
 

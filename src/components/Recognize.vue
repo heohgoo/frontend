@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    </head> -->
    <!-- build시 삽입 -->
+   <div style="background-color:rgb(255,255,255);">
   <div class="upload-image" :style="`background-image:url(${foodimage})`">
   <div class="d-flex justify-content-center">
   <button v-if="isLoading==false" class="btn btn-dark" type="button" style="margin-top:40%" disabled>
@@ -16,13 +17,17 @@
   </div>
   </div> -->
   </div>
-  <button v-if="scene==0" class="recog_btn" @click="recognize">음식 확인</button>
+  <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px;"/>
+  <p v-if="scene==0" style="text-align:center; margin-top:20px; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요? 아래 돋보기 버튼을 누르세요</p>
+  <button v-if="scene==0" class="recog_btn" style="margin-top:100px;" @click="recognize">
+    <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <div v-if="scene==1" class="recognize"><p class="recog_info"><img class="wait" src="../assets/answer.jpg"/>이 음식은 '{{ foodname }}'인 거 같아요.</p>
   <p class="truefalse" style="margin-top:10px">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" v-model="wmsg"></textarea>
   </div>
-  <button v-if="scene==1" class="submit" @click="recommend">확인</button>
+  <button v-if="scene==1" class="submit" @click="recommend"><img src="../assets/완료.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <!-- <button v-if="scene==1" class="submit" @click="[recommend(),loading()]">확인</button> -->
   <!-- @click="[back, recommend]" -->
+</div>
 </template>
 
 <script>
@@ -108,12 +113,15 @@ export default {
 
 <style>
 .upload-image {
-  height: 450px;
+  height: 350px;
+  width: 350px;
   background: white;
   background-size: cover;
-  border-radius:20px;
+  border-radius:30px;
   box-shadow: 0px 0px 20px rgb(87, 87, 87);
   border: 3px solid rgb(63, 64, 68);
+  display : block;
+  margin: 0px auto;
 }
 
 .recognize {
@@ -143,7 +151,7 @@ export default {
     font-size:25px;
     border-radius:20px;
     border: 3px solid rgb(63, 64, 68);
-    background:rgb(255,244,226); 
+    background:rgba(241, 241, 241); 
     color: black;
     font-family: "Jua", sans-serif;
 }
@@ -157,14 +165,14 @@ export default {
 .recog_btn {
     width: 60%;
     text-align: center;
-    font-size: 25px;
-    font-family: "Jua", sans-serif;
+    font-size: 30px;
+    font-family: 'Noto Sans KR', sans-serif;
     margin-left: auto;
     margin-right: auto;
     display: block;
     margin-top: 50px;
     margin-bottom: 0px;
-    background:rgb(255,244,226); 
+    background:rgb(255,255,255); 
     color: black;
     border-radius:10px;
 }
