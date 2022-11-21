@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    </head> -->
    <!-- build시 삽입 -->
-   <div style="background-color:rgb(255,255,255);">
+   <div style="background-color:rgb(255,244,226); border:2px solid black; border-radius:10px;">
   <div class="upload-image" :style="`background-image:url(${foodimage})`">
   <div class="d-flex justify-content-center">
   <button v-if="isLoading==false" class="btn btn-dark" type="button" style="margin-top:40%" disabled>
@@ -17,9 +17,12 @@
   </div>
   </div> -->
   </div>
-  <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px;"/>
-  <p v-if="scene==0" style="text-align:center; margin-top:20px; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요? 아래 {돋보기} 버튼을 누르세요</p>
-  <button v-if="scene==0" class="recog_btn" style="margin-top:100px;" @click="recognize">
+  <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px; border:2px solid black;"/>
+  <p v-if="scene==0" style="text-align:center; margin-top:20px; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요? 아래 (돋보기) 버튼을 누르세요</p>
+  <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16" style="display:block; margin-top:40px; margin:0px auto; width:50px; height:50px;">
+  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+</svg>
+  <button v-if="scene==0" class="recog_btn" style="margin-top:40px;" @click="recognize">
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <div v-if="scene==1" class="recognize"><p class="recog_info"><img class="wait" src="../assets/answer.jpg"/>이 음식은 '{{ foodname }}'인 거 같아요.</p>
   <p class="truefalse" style="margin-top:10px; margin-left:45px;">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" style="display:block; margin:0px auto;" v-model="wmsg"></textarea>
@@ -27,6 +30,7 @@
   <button v-if="scene==1" class="submit" @click="recommend"><img src="../assets/완료.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <!-- <button v-if="scene==1" class="submit" @click="[recommend(),loading()]">확인</button> -->
   <!-- @click="[back, recommend]" -->
+  <p><br></p>
 </div>
 </template>
 
@@ -113,13 +117,12 @@ export default {
 
 <style>
 .upload-image {
-  height: 250px;
-  width: 250px;
+  height: 320px;
+  width: 320px;
   background: white;
   background-size: cover;
-  border-radius:30px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
-  border: 3px solid rgb(63, 64, 68);
+  border-radius:10px;
+  border: 0px solid rgb(63, 64, 68);
   display : block;
   margin: 0px auto;
 }

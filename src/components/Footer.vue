@@ -2,8 +2,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <header>
         <div class="footer2">
-            <img src="../assets/메뉴얼.png" style="width:60px; background-color: white; margin-left:60px; float:left" @click="openusagemodal"/>
-            <img src="../assets/도움말.png" style="width:60px; background-color: white; margin-right:60px; float:right" @click="openhelpmodal"/>
+            <img src="../assets/메뉴얼.png" style="width:40px; background-color: white; margin-left:80px; float:left" @click="openusagemodal"/>
+            <img src="../assets/도움말.png" style="width:40px; background-color: white; margin-right:80px; float:right" @click="openhelpmodal"/>
         </div>
     </header>
 </template>
@@ -35,7 +35,7 @@ export default {
 @media (min-width:300px) {
 .footer2{
     background-color: black;
-    height:60px;
+    height:40px;
     width:410px;
     position: fixed;
     bottom: 0px;
@@ -46,7 +46,7 @@ export default {
 @media (min-width:460px) {
 .footer2{
     background-color: black;
-    height:60px;
+    height:40px;
     width:460px;
     bottom: 0px;
     position: fixed;

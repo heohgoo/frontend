@@ -17,16 +17,32 @@
       />
       <label for="file" class="input-plus">음식 사진 선택</label>
     </ul>
-    <img class="wait" src="../assets/음식선택.jpg"/>
+    <img class="wait" src="../assets/갤러리.png" style="background-color:rgb(237,225,227);"/>
     <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
     <p class="add" style="font-weight:bold">선택한 음식 리스트 : {{ selectedfoodlist }}</p>
   </div>
   <div class="recommend-button">
     <ul class="recommend-button-plus">
-    <label @click="cfrecommend">음식 추천</label>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="cfrecommend" style="border:1px white; background:white; width:190px;">음식 추천</button>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="this.cblisthave==false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="font-family:'Gowun Dodum', sans-serif;">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">선택된 음식 리스트 없음</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-px" style="text-align:center; font-size:16px; margin-top:20px; margin-bottom:20px; font-family:'Gowun Dodum', sans-serif;">
+        현재 사용자로부터 선택된 음식 리스트가 없어,<br> Content-based filering 기반 <br>추천 음식 리스트는 산출되지 않습니다.<br>이대로 추천 결과를 받아올까요?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="continuerecommend">계속 진행</button>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- <label @click="[next(), cfrecommend()]">음식 추천</label> -->
     </ul>
-    <img class="wait" src="../assets/음식추천.jpg"/>
+    <img class="wait" src="../assets/추천.png"/>
     <p class="add">오늘의 맛아,맛점,맛저 메뉴는?<br></p>
     <p class="add" style="font-weight:bold">Content-based filtering, Collaborative filtering</p>
     <p class="add">기반으로 추천해줍니다.</p>
@@ -61,6 +77,7 @@ export default {
       cfrmlist: [],
       cfrmurl: [],
       isLoading: true,
+      cblisthave: true,
     }
   },
   props : {
@@ -81,13 +98,13 @@ export default {
       console.log(a)
     },
 
-    cfrecommend() {
+    continuerecommend(){
       this.isLoading = false
-      console.log(this.id)
-      axios
-      .post('https://www.foodwebrs.com/cfalgorithm', { "username" : this.id })
-      // .post('/cfalgorithm', { "username" : this.id })
-      .then((result) => {
+        console.log(this.id)
+        axios
+        .post('https://www.foodwebrs.com/cfalgorithm', { "username" : this.id })
+        // .post('/cfalgorithm', { "username" : this.id })
+        .then((result) => {
               console.log(result.data)
               this.cfrmlist = result.data.rmlist
               this.cfrmurl = result.data.urllist
@@ -98,9 +115,39 @@ export default {
             })
             .catch((err)=>{
             console.log(err)
-        }) 
-      this.$emit('removelist')
+          }) 
+        this.$emit('removelist')
     },
+
+    cfrecommend() {
+      if (this.selectedfoodlist.length == 0){
+        this.cblisthave = false
+      }
+      if (this.cblisthave == true){
+        this.isLoading = false
+        console.log(this.id)
+        axios
+        .post('https://www.foodwebrs.com/cfalgorithm', { "username" : this.id })
+        // .post('/cfalgorithm', { "username" : this.id })
+        .then((result) => {
+              console.log(result.data)
+              this.cfrmlist = result.data.rmlist
+              this.cfrmurl = result.data.urllist
+              this.$emit('cflist', this.cfrmurl)
+              this.$emit('cffood', this.cfrmlist)
+              this.$emit('change', 2);
+              this.isLoading = true
+            })
+            .catch((err)=>{
+            console.log(err)
+          }) 
+        this.$emit('removelist')
+      }
+    },
+
+    continuer(){
+      this.cblisthave = true;
+    }
 
   },
 
@@ -207,6 +254,7 @@ export default {
   left: 0;
   right: 0;
   top: 10px;
+  background-color:rgb(201,203,224);
 }
 
 .add{

@@ -12,7 +12,7 @@
     <body>
     <div class="login">
     <img src="../assets/moto3.jpg" class="logo2"/>
-      <header><h2 style="margin-top:20px; font-size:28px; text-align:center; font-family: 'Do Hyeon', sans-serif; color:white">회원가입(SignIn)</h2></header>
+      <header><h2 style="margin-top:20px; font-size:28px; text-align:center; font-family: 'Noto Sans KR', sans-serif; color:white">회원가입(SignIn)</h2></header>
         <div class="white-bg" v-if="complete == false">
         <img class=le src="../assets/lerror.jpg"/>
         <h4>회원가입 실패!</h4>
@@ -48,7 +48,7 @@
           />
           <label for="password2" style="font-family: 'Noto Sans KR', sans-serif;">3.비밀번호확인</label>
         </div>
-        <p style="margin-top:0px; font-size:14px; font-family: 'Noto Sans KR', sans-serif; color:white; text-align:center">@아래는 정확한 추천 결과를 보장하기 위해 수집하는 정보들입니다.</p>
+        <p style="margin-top:0px; font-size:14px; font-family: 'Noto Sans KR', sans-serif; color:white; text-align:center">#아래는 정확한 추천 결과를 보장하기 위해 수집하는 정보들입니다.</p>
         <p style="margin-top:0px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">4.성별</p>
         <select v-model="gender" class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Noto Sans KR', sans-serif; color: black" v-for="(item, index) in genderList">{{ item.value }}</option> 
@@ -77,8 +77,9 @@
       </div>
     </div>
       <div>
-      <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-bottom:20px;" @click="register">확인</button>
+      <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-bottom:20px; border:2px solid black" @click="register">확인</button>
       </div>
+      <p><br></p>
     </body>
   </html>
 </template>

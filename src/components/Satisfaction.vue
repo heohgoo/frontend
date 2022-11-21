@@ -1,11 +1,13 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <div class="satisfaction">
-    <img src="../assets/review.png" class="logor" style="display:block; margin:0px auto; margin-top:20px; background:white;"/>
+    <img src="../assets/review.png" class="logor" style="display:block; margin:0px auto; margin-top:20px; background-color:rgb(255,244,226);"/>
         *리뷰 쓰기*
-  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:15px; margin-top:20px; font-weight:bold">step1.추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
-  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">네
-  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn" style="font-size:12px; font-family:'Noto Sans KR', sans-serif;">아니요
+  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:15px; margin-top:20px; font-weight:bold;">step1.추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
+  <div style="font-size:16px; font-weight: bold;">
+  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky">네
+  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn">아니요
+  </div>
   <p style="font-size:15px; margin-top:30px; margin-bottom:0px;">step2.별점을 작성해주세요.</p>
   <div class="star-rating space-x-4 mx-auto">
 	<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
@@ -22,8 +24,28 @@
   <p style="font-size:15px;">step3.건의사항 남겨주세요.</p>
   <div class="write">
   <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea>
-  <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
+  <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="sbutton" @click="gosf" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="this.satismodal==true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="font-family:'Gowun Dodum', sans-serif;">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">만족도 한 눈에 보기</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <p style="margin-top:20px;">{{ this.id }}님의 애플리케이션 만족도 점수</p>
+      <div class="progress">
+      <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" :aria-valuenow="this.loverate" aria-valuemin="0" aria-valuemax="100" :style="mystyle"></div>
+      </div>
+      <div class="modal-px" style="text-align:center; font-size:16px; margin-top:20px; margin-bottom:20px; font-family:'Gowun Dodum', sans-serif;">
+        '좋아요' 선택 수 + 별점 + 지금 먹을 음식 여부를<br>기반으로 가중치를 적용하여 산출한 만족도 점수<br>(각각 0.1:0.4:0.5의 가중치)
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="gohome">확인</button>
+      </div>
+    </div>
   </div>
+  </div>  
+</div>
   <p><br></p>
     <!-- <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button> -->
 </div>
@@ -33,6 +55,7 @@
 <script>
 // import axios from "axios"
 
+
 export default {
   data(){
     return{
@@ -41,33 +64,63 @@ export default {
       checkCrypto2 : false,
       ratings : 0,
       satisfy : true,
+      satismodal : false,
+      ynscore : 0,
+      mystyle : {
+        width : '0%',
+      }
     }
+  },
+  props : {
+    loverate : Number,
+    id : String,
   },
   methods : {
     erase() {
       this.msg="";
     },
 
-    gohome() {
-      this.$emit('change', 1)
+    gosf() {
+      this.satismodal = true
       if (this.checkCrypto1 == true){
-        this.satisfy = true
+          this.satisfy = true
       }
       else{
         this.satisfy = false
       }
       if (this.msg == "건의사항 있으면 여기에 남겨줘요"){
-        this.msg = ""
+          this.msg = ""
       }
+      if (this.satisfy == true){
+        this.ynscore = 1
+      }
+      else {
+        this.ynscore = 0
+      }
+      this.mystyle.width = (((this.loverate/100)*0.1 + (this.ratings/5)*0.4 + (this.ynscore)*0.5)*100) + "%"
+      // if ((this.satismodal) == false){
+      //   this.$emit('change', 1)
+      //   console.log(this.satisfy, this.ratings, this.msg)
+      //   // axios.post('https://www.foodwebrs.com/', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
+      //   // .then((result) => {
+      //   //     console.log(result)
+      //   // }) 
+      //   // .catch((err)=>{
+      //   //     console.log(err)
+      //   // })
+      // }
+    },
+    
+    gohome(){
+      this.$emit('change', 1)
       console.log(this.satisfy, this.ratings, this.msg)
-      // axios.post('https://www.foodwebrs.com/', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
-      // .then((result) => {
-      //     console.log(result)
-      // }) 
-      // .catch((err)=>{
-      //     console.log(err)
-      // })
-
+        // axios.post('https://www.foodwebrs.com/', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
+        // .then((result) => {
+        //     console.log(result)
+        // }) 
+        // .catch((err)=>{
+        //     console.log(err)
+        // })
     },
 
     checky() {

@@ -14,20 +14,20 @@
     <div class="black-bg" v-if="modal == true">
       <div class="white-bg">
         <h4>
-        <img :src='`${foodimgurl}`' style="width:50%;"></h4>
+        <img :src='`${foodimgurl}`' style="width:50%; border-radius:10px;"></h4>
         <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: rgb(250, 250, 252); font-size:20px; margin:0px auto;"
         @click="selectgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
         <p>칼로리(1인분 기준) : </p>
         <p>음식 설명</p>
-        <button @click="close">확인</button>
-        <button style="margin-left:20px" @click="close">주변 맛집 찾기</button> 
+        <button @click="close" style="border-radius:5px; background:white;">확인</button>
+        <button style="margin-left:20px; border-radius:5px; background:white;" @click="close">주변 맛집 찾기</button> 
       </div>
     </div>
       <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
       <div class="foods">
         <div class="food-1" v-for="(a,i) in cbfoodlist" :key="i" :style="{ backgroundImage: `url(${ cburllist[i] })`}" @click="selected(cburllist[i], cbfoodlist[i])">
-        <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black">{{ cbfoodlist[i] }}</span>
+        <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black;">{{ cbfoodlist[i] }}</span>
         <!-- <input type="checkbox" style="width:20px; height:20px;" @click="close"/> -->
         <slot></slot>
         </div>
@@ -78,6 +78,7 @@ export default {
     methods: {
         next(){
             this.$emit('change', 3);
+            this.$emit('sendresult', this.selectedfoodlist.length*100/(this.cbfoodlist.length+this.cffoodlist.length))
             console.log(this.selectedfoodlist)
             console.log(this.id)
             // axios.post('https://www.foodwebrs.com/', { "username":this.id, "selectedfoodlist":this.selectedfoodlist })
