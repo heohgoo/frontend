@@ -38,10 +38,12 @@
           />
           <label for="password" style="font-family: 'Noto Sans KR', sans-serif;">비밀번호</label>
         </div>
-        <div id="signin" class="signin"><button style="border-radius:10px; border: 1px solid rgb(0, 0, 0);font-size:22px; font-family:'Noto Sans KR', sans-serif; background:rgb(255,240,240); text-align:center; " @click="signin">회원가입</button></div>
+        <!-- <div id="signin" class="signin"><button style="border-radius:10px; border: 1px solid rgb(0, 0, 0);font-size:22px; font-family:'Noto Sans KR', sans-serif; background:rgb(255,240,240); text-align:center; " @click="signin">회원가입</button></div> -->
+        <button class="loginbtn" style="font-family:'Noto Sans KR', sans-serif; font-size:17px; background-color:rgb(255,244,226); margin-top:40px; border-radius:7px; border:1px solid black; width:100%; height:55px; color:black;" @click="submit">로그인</button>
+      <p style="text-align:center; margin-top:20px;"><span style="color:white; text-align:center; margin-top:20px; font-family:'Noto Sans KR', sans-serif;">아직 계정이 없으신가요?</span>
+      <span style="color:white; font-family:'Noto Sans KR', sans-serif; text-align:center; text-decoration:underline; color:blueviolet; margin-left:10px; font-size:18px;" @click="signin">회원가입</span></p>
       </div>
       <div>
-      <button class="loginbtn" style="font-family:'Noto Sans KR', sans-serif; font-size:30px; background-color:rgb(201,203,224); margin-top:40px; border:1.5px solid black;" @click="submit">로그인</button>
       </div>
     </body>
   </html>

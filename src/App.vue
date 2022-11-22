@@ -16,7 +16,7 @@
     </ul>
   </div>
 </div>
-      <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="num -= 1" class="backbtn" style="font-weight:bold;">&lt;뒤로</button>
+      <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold;">&lt;뒤로</button>
     </ul>
     <ul class="header-button-right">
       <div style="font-family:'Roboto Mono', monospace; font-weight:bold;">
@@ -35,23 +35,26 @@
         <p>4. 음식 사진 인식이 잘못된 경우 텍스트로 음식명을 입력하고 음식 사진 인식이 잘 됬으면 체크 버튼을 누른다.</p>
         <p>5. '음식 추천' 버튼을 입력하여 음식을 추천받는다.</p>
         <p>6. 음식 이미지 버튼을 클릭하면 음식에 대한 정보가 나오고, '좋아요' 버튼을 입력받을 수 있다.</p>
-        <p>7. '리뷰 남기기' 버튼을 입력하고, 리뷰를 작성한 후 '제출' 버튼을 누르면, 초기 페이지로 돌아온다.</p>
-        <button @click="closeum">확인</button>
+        <p>7. '리뷰 남기기' 버튼을 입력하고, 리뷰를 작성한 후 '제출' 버튼을 누르면, 만족도 점수를 산출하고 초기 페이지로 돌아온다.</p>
+        <button style="background-color:white; border-radius:7px; width:100%" @click="closeum">확인</button>
       </div>
     </div>
     <div class="black-bg2" style="text-align:center; font-family:'Gowun Dodum', sans-serif;" v-if="this.helpmodal==true">
       <div class="white-bg2">
         <h4>도움말</h4>
-        <p>음식 사진 인식과 사용자 정보를 통한<br>Content-based filtering, Collaborative filtering 기반<br>음식 추천 웹 어플리케이션</p>
-        <button @click="closehm">확인</button>
+        <p>음식 사진 인식과 사용자 정보를 통한<br>Content-based filtering, Collaborative filtering 기반<br>음식 추천 웹 어플리케이션
+        <br><br>#Vue.js, Flask, AWS EC2/RDS,<br>MySQL, Jupyter Notebook
+        <br>오픈소스:ResNet(Microsoft)</p>
+        <button style="background-color:white; border-radius:7px; width:100%" @click="closehm">확인</button>
       </div>
     </div>
   <Login v-if="num == 0 && this.usagemodal == false && this.helpmodal == false" @change="change" @signin="signin" @idinput="idinput"/>
-  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @cffood="cffood" @recog="recog" @foodupload="foodupload" @removelist="removelist" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
+  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @removelist="removelist" @cffood="cffood" @recog="recog" @foodupload="foodupload" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @back="back" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
   <Recommend v-if="num == 2" num="num" :id="id" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @sendresult="sendresult" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" :id="id" num="num" :loverate="loverate" @change="change"/>
-  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/>
+  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @sfood="sfood" @erasefood="erasefood" @back="back"/>
+  <!-- <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/> -->
   <Signin v-if="num == 5 && this.usagemodal == false && this.helpmodal == false" num="num" @change="change"/>
   <!-- @foodlists="foodlists" -->
   <Footer @um="um" @hm="hm"/>
@@ -183,6 +186,18 @@ export default {
     sendresult(value) {
       this.loverate = value;
       console.log(this.loverate)
+      this.cffoodlist = []
+      this.cfurllist = []
+      this.cbfoodlist = []
+      this.cburllist = []
+    },
+
+    recomback() {
+      this.num -= 1
+      this.cffoodlist = []
+      this.cfurllist = []
+      this.cbfoodlist = []
+      this.cburllist = []
     }
     
   }

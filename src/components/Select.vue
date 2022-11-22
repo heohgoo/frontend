@@ -78,6 +78,8 @@ export default {
       cfrmurl: [],
       isLoading: true,
       cblisthave: true,
+      cbfoodlist: [],
+      cbfoodurl: [],
     }
   },
   props : {
@@ -116,6 +118,7 @@ export default {
             .catch((err)=>{
             console.log(err)
           }) 
+          console.log(this.selectedfoodlist)
         this.$emit('removelist')
     },
 
@@ -141,6 +144,24 @@ export default {
             .catch((err)=>{
             console.log(err)
           }) 
+
+          axios
+            //.post('/cbfalgorithm', { "input_list" : this.selectedfoodlist })
+            .post('https://www.foodwebrs.com/CBFalgorithm', { "food_list" : this.selectedfoodlist })
+            .then((result) => {
+                 console.log(this.selectedfoodlist)
+                 console.log(result)
+                 this.cbfoodlist = result.data.rmlist
+                 this.cbfoodurl = result.data.urllist
+                 console.log(this.cbfoodlist)
+                 this.$emit('cbfoodlists', this.cbfoodlist)
+                 this.$emit('cbfoodurl', this.cbfoodurl)
+                 this.$emit('back', 1)
+                 this.isLoading = true;
+            })
+            .catch((err)=>{
+            console.log(err)
+        }) 
         this.$emit('removelist')
       }
     },

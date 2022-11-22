@@ -81,6 +81,7 @@ export default {
             this.$emit('sendresult', this.selectedfoodlist.length*100/(this.cbfoodlist.length+this.cffoodlist.length))
             console.log(this.selectedfoodlist)
             console.log(this.id)
+            this.selectedfoodlist = [];
             // axios.post('https://www.foodwebrs.com/', { "username":this.id, "selectedfoodlist":this.selectedfoodlist })
             // .then((result) => {
             // console.log(result)

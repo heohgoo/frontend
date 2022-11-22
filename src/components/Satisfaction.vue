@@ -29,15 +29,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="font-family:'Gowun Dodum', sans-serif;">
-        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">만족도 한 눈에 보기</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">만족도 점수</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <p style="margin-top:20px;">{{ this.id }}님의 애플리케이션 만족도 점수</p>
-      <div class="progress">
+      <div class="progress" style="width:80%; margin:0px auto;">
       <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar" :aria-valuenow="this.loverate" aria-valuemin="0" aria-valuemax="100" :style="mystyle"></div>
       </div>
       <div class="modal-px" style="text-align:center; font-size:16px; margin-top:20px; margin-bottom:20px; font-family:'Gowun Dodum', sans-serif;">
-        '좋아요' 선택 수 + 별점 + 지금 먹을 음식 여부를<br>기반으로 가중치를 적용하여 산출한 만족도 점수<br>(각각 0.1:0.4:0.5의 가중치)
+        <p style="font-size:20px;">{{this.score}}점/100점</p>
+        '좋아요' 선택 수 + 별점 + 지금 먹을 음식 여부를<br>기반으로 가중치를 적용하여 산출한 만족도 점수<br>(각각 0.1:0.4:0.5의 가중치 적용)
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="gohome">확인</button>
@@ -66,6 +67,7 @@ export default {
       satisfy : true,
       satismodal : false,
       ynscore : 0,
+      score : 0,
       mystyle : {
         width : '0%',
       }
@@ -97,6 +99,7 @@ export default {
       else {
         this.ynscore = 0
       }
+      this.score = parseInt(((this.loverate/100)*0.1 + (this.ratings/5)*0.4 + (this.ynscore)*0.5)*100)
       this.mystyle.width = (((this.loverate/100)*0.1 + (this.ratings/5)*0.4 + (this.ynscore)*0.5)*100) + "%"
       // if ((this.satismodal) == false){
       //   this.$emit('change', 1)

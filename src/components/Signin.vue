@@ -74,10 +74,11 @@
         <input type="checkbox" v-model="checkedValues" id="분식" name="분식" value="분식">분식
         </div>
         <!-- {{ checkedValues }} -->
+        <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-top:20px; width:100%; height:55px; border-radius:8px; border:1px solid black; background-color:rgb(255,244,226); color:black; font-size:17px;" @click="register">확인</button>
       </div>
     </div>
       <div>
-      <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-bottom:20px; border:2px solid black" @click="register">확인</button>
+      <!-- <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-bottom:20px; border:2px solid black" @click="register">확인</button> -->
       </div>
       <p><br></p>
     </body>
