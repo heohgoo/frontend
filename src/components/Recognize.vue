@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    </head> -->
    <!-- build시 삽입 -->
-   <div style="background-color:rgb(255,244,226); border:2px solid black; border-radius:10px;">
+   <div style="background-color:white; border:0px solid black; border-radius:10px;">
   <div class="upload-image" :style="`background-image:url(${foodimage})`">
   <div class="d-flex justify-content-center">
   <button v-if="isLoading==false" class="btn btn-dark" type="button" style="margin-top:40%" disabled>
@@ -17,17 +17,61 @@
   </div>
   </div> -->
   </div>
-  <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px; border:2px solid black;"/>
-  <p v-if="scene==0" style="text-align:center; margin-top:30px; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요? 아래 (돋보기) 버튼을 누르세요</p>
-  <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16" style="display:block; margin-top:30px; margin:0px auto; width:50px; height:50px;">
+  <div style="border:0px solid black; border-radius:10px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1); margin-top:20px;">
+  <img src="../assets/뒤로가기.png" @click="goselect" style="width:40px; margin-left:20px; margin-top:10px; margin-bottom:10px;"/>
+  <input
+        @change="changefood"
+        accept="image/*"
+        type="file"
+        id="file"
+        class="inputfile"
+    />
+  <label for="file">
+  <img v-if="scene==0" src="../assets/다시선택.png" style="width:40px; margin-left:20px; margin-top:10px; margin-bottom:10px;">
+  </label>
+  <img src="../assets/설명.png"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:40px; margin-left:20px; margin-top:10px; margin-bottom:10px;"/>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="this.recogmodal==false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="font-family:'Gowun Dodum',sans-serif;">
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">정보</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-px" style="text-align:center; font-size:16px; margin-top:20px; margin-bottom:20px; font-family:'Gowun Dodum', sans-serif;">
+        @Microsoft ResNet(Version.50),<br><br>-인식 가능한 음식 리스트-<br>국밥류(돼지국밥, 소머리국밥, 콩나물국밥),
+        <br>탕류(설렁탕, 갈비탕, 매운탕, 감자탕, 마라탕),
+        <br>찌개류(된장찌개, 김치찌개, 부대찌개, 순두부찌개),
+        <br>마라샹궈, 버섯전골, 샤브샤브, 나베, 낙곱새,
+        <br>갈비, 생선구이, 고기구이,
+        <br>비빔밥, 볶음밥, 덮밥, 초밥, 회덮밥,
+        <br>육회, 돈까스, 생선까스, 해물찜,
+        <br>족발, 보쌈, 스테이크, 폭립, 치킨, 피자,
+        <br>햄버거, 샌드위치, 샐러드, 토스트,
+        <br>짬뽕, 짜장면, 탕수육, 깐풍기, 꿔바로우,
+        <br>냉면, 라면, 떡국,
+        <br>국수, 파스타,
+        <br>김밥, 떡볶이, 죽
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="continuerecommend">확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <!-- <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px; border:2px solid black;"/> -->
+  <p v-if="scene==0" style="text-align:center; margin-top:30px; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요?</p>
+  <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16" style="display:block; margin:0px auto; width:50px; height:50px;">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
 </svg>
-  <button v-if="scene==0" class="recog_btn" style="margin-top:40px; width:100%" @click="recognize">
+  <button v-if="scene==0" class="recog_btn" style="margin-top:40px; width:100%; border:1px solid black;" @click="recognize">
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
-  <div v-if="scene==1" class="recognize"><p class="recog_info"><img class="wait" src="../assets/answer.jpg"/>이 음식은 '{{ foodname }}'인 거 같아요.</p>
+  <div v-if="scene==1" class="recognize"><p class="recog_info"><img src="../assets/answer.jpg" style="width:50px; margin-right:10px;"/>이 음식은 '{{ foodname }}'이에요.</p>
   <p class="truefalse" style="margin-top:10px; margin-left:45px;">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" style="display:block; margin:0px auto;" v-model="wmsg"></textarea>
   </div>
-  <button v-if="scene==1" class="submit" style="width:100%;" @click="recommend"><img src="../assets/완료.png" style="width:40px; display:block; margin:0px auto;"/></button>
+  <button v-if="scene==1" class="submit" style="width:100%;" @click="recommend">
+    <img src="../assets/완료.png" style="width:40px; display:block; margin:0px auto;"/>
+  </button>
   <!-- <button v-if="scene==1" class="submit" @click="[recommend(),loading()]">확인</button> -->
   <!-- @click="[back, recommend]" -->
   <p><br></p>
@@ -48,6 +92,8 @@ export default {
             cbfoodlist:[],
             cbfoodurl:[],
             isLoading: true,
+            recogmodal: false,
+            changefoodfile : "",
         }
     },
     props : {
@@ -110,9 +156,17 @@ export default {
         erase(){
             this.wmsg="";
         },
-        // loading(){
-        //    this.isLoading = false;
-        // } 
+        goselect(){
+            this.$emit('goselect', 1)
+        },
+        changefood(e){
+            let a = e.target.files;
+            console.log(a[0]); //일단 첫번째 파일만
+            let url = URL.createObjectURL(a[0]);
+            this.$emit('changefoodurl', url)
+            this.$emit('changefoodfile', a)
+        }
+        
     },
 }
 </script>
@@ -123,10 +177,7 @@ export default {
   width: 90%;
   background: white;
   background-size: cover;
-  border-top-right-radius:100px;
-  border-top-left-radius:20px;
-  border-bottom-left-radius:100px;
-  border-bottom-right-radius:20px;
+  border-radius: 5px;
   border: 1px solid rgb(63, 64, 68);
   display : block;
   margin: 0px auto;
@@ -161,7 +212,6 @@ export default {
     border: 3px solid rgb(63, 64, 68);
     background:rgba(241, 241, 241); 
     color: black;
-    font-family: "Jua", sans-serif;
 }
 
 .recog_info {

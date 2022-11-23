@@ -19,7 +19,7 @@
       <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold;">&lt;뒤로</button>
     </ul>
     <ul class="header-button-right">
-      <div style="font-family:'Roboto Mono', monospace; font-weight:bold;">
+      <div style="font-family:'Roboto Mono', monospace; font-weight:bold; font-size:15px;">
       ID:
       {{ id }}
       </div>
@@ -53,7 +53,7 @@
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
   <Recommend v-if="num == 2" num="num" :id="id" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @sendresult="sendresult" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" :id="id" num="num" :loverate="loverate" @change="change"/>
-  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @sfood="sfood" @erasefood="erasefood" @back="back"/>
+  <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @sfood="sfood" @erasefood="erasefood" @goselect="goselect" @back="back" @changefoodurl="changefoodurl" @changefoodfile="changefoodfile"/>
   <!-- <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/> -->
   <Signin v-if="num == 5 && this.usagemodal == false && this.helpmodal == false" num="num" @change="change"/>
   <!-- @foodlists="foodlists" -->
@@ -137,6 +137,10 @@ export default {
       this.foodimage=value;
     },
 
+    changefoodurl(value){
+      this.foodimage=value;
+    },
+
     cflist(value){
       this.cfurllist=value;
     },
@@ -156,6 +160,10 @@ export default {
     },
 
     foodupload(value) {
+      this.foodfile = value;
+    },
+
+    changefoodfile(value){
       this.foodfile = value;
     },
 
@@ -198,6 +206,10 @@ export default {
       this.cfurllist = []
       this.cbfoodlist = []
       this.cburllist = []
+    },
+
+    goselect() {
+      this.num = 1
     }
     
   }

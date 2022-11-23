@@ -356,7 +356,7 @@ div {
     text-align: center;
     font-size: 15px;
     margin-left:260px;
-    border-radius:20px;
+    border-radius:10px;
     padding-bottom:5px;
     font-family: 'Gowun Dodum', sans-serif;
     background: rgb(255,244,226);
@@ -511,7 +511,7 @@ div {
     text-align: center;
     font-size: 15px;
     margin-left:260px;
-    border-radius:20px;
+    border-radius:10px;
     padding-bottom:5px;
     font-family: 'Gowun Dodum', sans-serif;
     background: rgb(255,244,226);

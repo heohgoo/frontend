@@ -1,14 +1,17 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <div class="satisfaction">
-    <img src="../assets/review.png" class="logor" style="display:block; margin:0px auto; margin-top:20px; background-color:rgb(255,244,226);"/>
-        *리뷰 쓰기*
-  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:15px; margin-top:20px; font-weight:bold;">step1.추천받은 음식들 중 지금 바로 먹을 음식이 있나요?</p>
+  <img src="../assets/booklet.png" style="width:60px; float:right; margin-top:-4px; margin-right:30px;"/><br><br>
+  <div>
+    <img src="../assets/review.png" style="background:white; width:40px; vertical-align: middle;">
+    <span style="margin-top:10px; margin-left:10px;">리뷰 작성</span>
+  </div>
+  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:20px; margin-top:20px; font-weight:bold;">step1.<br>추천받은 음식들 중<br>지금 바로 먹을 음식이 있나요?</p>
   <div style="font-size:16px; font-weight: bold;">
   <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky">네
   <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn">아니요
   </div>
-  <p style="font-size:15px; margin-top:30px; margin-bottom:0px;">step2.별점을 작성해주세요.</p>
+  <p style="font-size:20px; margin-top:40px; margin-bottom:0px;">step2.<br>별점을 작성해주세요.</p>
   <div class="star-rating space-x-4 mx-auto">
 	<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 	<label for="5-stars" class="star pr-4">★</label>
@@ -21,7 +24,7 @@
 	<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
 	<label for="1-star" class="star">★</label>
   </div> 
-  <p style="font-size:15px;">step3.건의사항 남겨주세요.</p>
+  <p style="font-size:20px; margin-top:15px;">step3.<br>건의사항 남겨주세요.</p>
   <div class="write">
   <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea>
   <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="sbutton" @click="gosf" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
@@ -144,16 +147,16 @@ export default {
 
 <style>
 .sbutton{
-  width: 100px;
+  width: 50%;
+  height: 50px;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  background: white;
+  background: black;
+  color: white;
   font-size: 20px;
-  color: black;
   border-radius:20px;
-  font-family: 'Jua', sans-serif;
-  border: 3px solid rgb(63, 64, 68);
+  border: 1px solid black;
 }
 
 .logor {
@@ -224,13 +227,15 @@ export default {
 
 .satisfaction {
   border-bottom-right-radius:60px;
+  border-top-left-radius: 70px;
   font-size:30px;
   text-align:center;
   padding-bottom: 0px;
   margin-left: 10px;
   margin-right: 10px;
   font-family:'Noto Sans KR', sans-serif;
-  background-color: rgb(255,244,226);
-  border: 3px solid rgb(63, 64, 68);
+  background-color: white;
+  border: 1.5px solid rgb(63, 64, 68);
 }
+
 </style>

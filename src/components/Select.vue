@@ -216,7 +216,6 @@ export default {
   border-left: 3px solid rgb(63, 64, 68);
   border-right: 3px solid rgb(63, 64, 68);
   border-radius:10px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
 }
 
 .select-button-plus {
@@ -242,7 +241,6 @@ export default {
   border-right: 3px solid rgb(63, 64, 68);
   border-radius:10px;
   padding-bottom:50px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
 }
 
 .recommend-button-plus {
@@ -308,7 +306,6 @@ export default {
   border-left: 3px solid rgb(63, 64, 68);
   border-right: 3px solid rgb(63, 64, 68);
   border-radius:10px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
 }
 
 .select-button-plus {
@@ -334,7 +331,6 @@ export default {
   border-right: 3px solid rgb(63, 64, 68);
   border-radius:10px;
   padding-bottom:50px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
 }
 
 .recommend-button-plus {

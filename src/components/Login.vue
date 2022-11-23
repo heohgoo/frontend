@@ -11,8 +11,8 @@
     </head>
     <body>
     <div class="login">
-    <img src="../assets/moto3.jpg" class="logo2"/>
-      <header><h2 style="margin-top:20px; font-size:28px; text-align:center; font-family: 'Do Hyeon', sans-serif; color:white">REK:UMMEND</h2></header>
+    <img src="../assets/moto4.jpg" class="logo2"/>
+      <header><h2 style="margin-top:0px; font-size:25px; text-align:center;font-family: 'Noto Sans KR', sans-serif; color:white">REK:UMMEND</h2></header>
         <div class="white-bg" v-if="verified == false">
         <img class=le src="../assets/lerror.jpg"/>
         <h4>로그인 실패!</h4>
@@ -123,11 +123,9 @@ div {
   width: 100%;
   margin-top:20px;
   padding-bottom: 50px;
-  background-color:rgb(57,61,72);
-  border: 1.5px solid rgb(63, 64, 68);
+  background-color:black;
+  border: 1.5px solid black;
   border-radius:10px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
-  border: 3px solid rgb(63, 64, 68);
 }
 
 .logo2{
@@ -135,7 +133,7 @@ div {
     margin-left:auto;
     margin-right:auto; 
     width:200px; 
-    height:100px; 
+    height:200px; 
     display:block; 
 }
 
@@ -148,7 +146,7 @@ div {
     background:rgb(255,244,226); 
     color: black;
     border-radius:20px;
-    border: 1px solid rgb(63, 64, 68);
+    border: 1px solid black;
 }
 
 .signin {
@@ -236,10 +234,9 @@ div {
   margin-top:20px;
   margin-bottom:20px;
   padding-bottom: 20px;
-  background-color:rgb(57,61,72);
-  border: 1.5px solid rgb(63, 64, 68);
+  background-color:black;
+  border: 1.5px solid black;
   border-radius:10px;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
 }
 
 .logo2{
@@ -247,7 +244,7 @@ div {
     margin-left:auto;
     margin-right:auto; 
     width:230px; 
-    height:100px; 
+    height:230px; 
     display:block; 
     border-radius:20px;
 }
@@ -260,7 +257,7 @@ div {
     font-family:'Noto Sans KR', sans-serif;
     background:rgb(255,244,226); 
     border-radius:20px;
-    border: 1px solid rgb(63, 64, 68);
+    border: 1px solid black;
 }
 
 .signin {
