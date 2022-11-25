@@ -57,7 +57,7 @@
 </template>
 
 <script>
-// import axios from "axios"
+import axios from "axios"
 
 
 export default {
@@ -120,13 +120,13 @@ export default {
     gohome(){
       this.$emit('change', 1)
       console.log(this.satisfy, this.ratings, this.msg)
-        // axios.post('https://www.foodwebrs.com/', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
-        // .then((result) => {
-        //     console.log(result)
-        // }) 
-        // .catch((err)=>{
-        //     console.log(err)
-        // })
+        axios.post('https://www.foodwebrs.com/satisfaction', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
+        .then((result) => {
+            console.log(result)
+        }) 
+        .catch((err)=>{
+            console.log(err)
+        })
     },
 
     checky() {
