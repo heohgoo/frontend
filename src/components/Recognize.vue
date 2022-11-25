@@ -66,7 +66,7 @@
 </svg>
   <button v-if="scene==0" class="recog_btn" style="margin-top:40px; width:100%; border:1px solid black;" @click="recognize">
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
-  <div v-if="scene==1" class="recognize"><p class="recog_info"><img src="../assets/answer.jpg" style="width:50px; margin-right:10px;"/>이 음식은 '{{ foodname }}'이에요.</p>
+  <div v-if="scene==1" class="recognize"><p class="recog_info"><img src="../assets/answer.jpg" style="width:50px; margin-right:10px;"/>이 음식은 '{{ foodname }}'입니다.</p>
   <p class="truefalse" style="margin-top:10px; margin-left:45px;">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" style="display:block; margin:0px auto;" v-model="wmsg"></textarea>
   </div>
   <button v-if="scene==1" class="submit" style="width:100%;" @click="recommend">

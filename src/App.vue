@@ -19,8 +19,8 @@
       <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold;">&lt;뒤로</button>
     </ul>
     <ul class="header-button-right">
-      <div style="font-family:'Roboto Mono', monospace; font-weight:bold; font-size:15px;">
-      ID:
+      <div class="idshow" style="font-family:'Roboto Mono', monospace; font-weight:bold; margin-right:25px;">
+      ID:<br>
       {{ id }}
       </div>
     </ul>
@@ -49,9 +49,11 @@
       </div>
     </div>
   <Login v-if="num == 0 && this.usagemodal == false && this.helpmodal == false" @change="change" @signin="signin" @idinput="idinput"/>
-  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @removelist="removelist" @cffood="cffood" @recog="recog" @foodupload="foodupload" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @back="back" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
+  <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @removelist="removelist" @cffood="cffood" @recog="recog" @foodupload="foodupload" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl"
+  @cfkcal="cfkcal" @cfexp="cfexp" @cbkcal="cbkcal" @cbexp="cbexp" @back="back" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
-  <Recommend v-if="num == 2" num="num" :id="id" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" @sendresult="sendresult" @change="change"></Recommend>
+  <Recommend v-if="num == 2" num="num" :id="id" :cffoodlist="cffoodlist" :cfurllist="cfurllist" :cbfoodlist="cbfoodlist" :cburllist="cburllist" 
+  :cfkcallist="cfkcallist" :cfexplist="cfexplist" :cbkcallist="cbkcallist" :cbexplist="cbexplist" @sendresult="sendresult" @change="change"></Recommend>
   <Satisfaction v-if="num == 3" :id="id" num="num" :loverate="loverate" @change="change"/>
   <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @sfood="sfood" @erasefood="erasefood" @goselect="goselect" @back="back" @changefoodurl="changefoodurl" @changefoodfile="changefoodfile"/>
   <!-- <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/> -->
@@ -84,8 +86,12 @@ export default {
       id: "",
       cffoodlist : [],
       cfurllist : [],
+      cfkcallist : [],
+      cfexplist : [],
       cbfoodlist : [],
       cburllist : [],
+      cbkcallist : [],
+      cbexplist : [],
       usagemodal : false,
       helpmodal : false,
       loverate : 0,
@@ -149,6 +155,14 @@ export default {
       this.cffoodlist=value;
     },
 
+    cfexp(value){
+      this.cfexplist=value;
+    },
+
+    cfkcal(value){
+      this.cfkcallist=value;
+    },
+
     back(value) {
       this.num=value;
     },
@@ -175,6 +189,14 @@ export default {
       this.cburllist = value;
     },
 
+    cbexp(value){
+      this.cbexplist=value;
+    },
+
+    cbkcal(value){
+      this.cbkcallist=value;
+    },
+
     sfood(value) {
       this.selectedfoodlist.push(value);
     },
@@ -196,16 +218,24 @@ export default {
       console.log(this.loverate)
       this.cffoodlist = []
       this.cfurllist = []
+      this.cfexplist = []
+      this.cfkcallist = []
       this.cbfoodlist = []
       this.cburllist = []
+      this.cbexplist = []
+      this.cbkcallist = []
     },
 
     recomback() {
       this.num -= 1
       this.cffoodlist = []
       this.cfurllist = []
+      this.cfexplist = []
+      this.cfkcallist = []
       this.cbfoodlist = []
       this.cburllist = []
+      this.cbexplist = []
+      this.cbkcallist = []
     },
 
     goselect() {
@@ -217,7 +247,7 @@ export default {
 </script>
 
 <style>
-body {
+/* body {
   margin: 0;
 }
 ul {
@@ -295,7 +325,92 @@ ul {
   position: relative;
   border-right: 1px solid #eee;
   border-left: 1px solid #eee;
+} */
+
+@media screen and (min-width:300px){
+body {
+  margin: 0;
 }
+ul {
+  padding: 5px;
+  list-style-type: none;
+}
+
+.white-bg2 {
+  width: 75%; background: white;
+  border-radius: 8px;
+  padding: 20px;
+} 
+
+.black-bg2 {
+  width: 410px; height:100%;
+  background: rgba(0,0,0,0.5);
+  position: absolute; 
+  padding:20px;
+  margin:auto;
+}
+
+.idshow {
+  font-size:10px;
+}
+
+.backbtn{
+  height:40px;
+  border-radius:5px; 
+  background:rgb(255,244,226); 
+  color:black
+}
+
+.logo {
+  width: 140px;
+  margin: auto;
+  display: block;
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 8px;
+}
+.header {
+  width: 100%;
+  height: 150px;
+  background-color: rgb(255,255,255);
+  padding-bottom: 8px;
+  position: sticky;
+  top: 0;
+}
+.header-button-left {
+  color: black;
+  font-style: bold;
+  float: left;
+  width: 80px;
+  font-size:13px;
+  padding-left: 15px;
+  font-family: 'Gowun Dodum', sans-serif;
+  cursor: pointer;
+  margin-top: 40px;
+}
+.header-button-right {
+  color: black;
+  font-family: 'Jua', sans-serif;
+  float: right;
+  margin-top: 40px;
+  margin-left: -15px;
+  margin-right: 0px;
+}
+
+#app {
+  box-sizing: border-box;
+  font-family: "consolas";
+  margin-top: 60px;
+  width: 100%;
+  max-width: 460px;
+  margin: auto;
+  position: relative;
+  border-right: 1px solid #eee;
+  border-left: 1px solid #eee;
+}
+}
+
 
 @media (min-width:410px) {
 body {
@@ -304,6 +419,10 @@ body {
 ul {
   padding: 5px;
   list-style-type: none;
+}
+
+.idshow {
+  font-size:15px;
 }
 
 .white-bg2 {
@@ -360,7 +479,7 @@ ul {
   font-family: 'Jua', sans-serif;
   float: right;
   margin-top: 40px;
-  margin-left: -15px;
+  margin-left: -20px;
   margin-right: 0px;
 }
 
@@ -398,6 +517,10 @@ ul {
   position: absolute; 
   padding:20px;
   margin:auto;
+}
+
+.idshow {
+  font-size:15px;
 }
 
 .backbtn{

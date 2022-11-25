@@ -36,6 +36,17 @@ export default {
 .footer2{
     background-color: black;
     height:40px;
+    width:320px;
+    position: fixed;
+    bottom: 0px;
+    display: block;
+    margin: 0px auto;
+}
+}
+@media (min-width:400px) {
+.footer2{
+    background-color: black;
+    height:40px;
     width:410px;
     position: fixed;
     bottom: 0px;

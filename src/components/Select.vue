@@ -76,10 +76,14 @@ export default {
       foodfile: "",
       cfrmlist: [],
       cfrmurl: [],
+      cfrmkcal : "",
+      cfrmexp : "",
       isLoading: true,
       cblisthave: true,
       cbfoodlist: [],
       cbfoodurl: [],
+      cbrmkcal: "",
+      cbrmexp : "",
     }
   },
   props : {
@@ -110,8 +114,12 @@ export default {
               console.log(result.data)
               this.cfrmlist = result.data.rmlist
               this.cfrmurl = result.data.urllist
+              this.cfrmkcal = result.data.kcal
+              this.cfrmexp = result.data.comment
               this.$emit('cflist', this.cfrmurl)
               this.$emit('cffood', this.cfrmlist)
+              this.$emit('cfkcal', this.cfrmkcal)
+              this.$emit('cfexp', this.cfrmexp)
               this.$emit('change', 2);
               this.isLoading = true
             })
@@ -136,8 +144,12 @@ export default {
               console.log(result.data)
               this.cfrmlist = result.data.rmlist
               this.cfrmurl = result.data.urllist
+              this.cfrmkcal = result.data.kcal
+              this.cfrmexp = result.data.comment
               this.$emit('cflist', this.cfrmurl)
               this.$emit('cffood', this.cfrmlist)
+              this.$emit('cfkcal', this.cfrmkcal)
+              this.$emit('cfexp', this.cfrmexp)
               this.$emit('change', 2);
               this.isLoading = true
             })
@@ -153,9 +165,12 @@ export default {
                  console.log(result)
                  this.cbfoodlist = result.data.rmlist
                  this.cbfoodurl = result.data.urllist
-                 console.log(this.cbfoodlist)
+                 this.cbrmkcal = result.data.kcal
+                 this.cbrmexp = result.data.comment
                  this.$emit('cbfoodlists', this.cbfoodlist)
                  this.$emit('cbfoodurl', this.cbfoodurl)
+                 this.$emit('cbkcal', this.cbrmkcal)
+                 this.$emit('cbexp', this.cbrmexp)
                  this.$emit('back', 1)
                  this.isLoading = true;
             })
