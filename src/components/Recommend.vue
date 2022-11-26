@@ -13,16 +13,36 @@
   <div class="recommend">
     <div class="black-bg" v-if="modal == true">
       <div class="white-bg">
+        <div v-if="modalscene==0">
         <h4>
-        <img :src='`${foodimgurl}`' style="width:50%; border-radius:10px;"></h4>
-        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: rgb(250, 250, 252); font-size:20px; margin:0px auto;"
+        <img :src='`${foodimgurl}`' style="width:50%; border-radius:10px; border:1px solid black;"></h4>
+        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: white; font-size:20px; margin:0px auto;"
         @click="selectgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
-        <p>칼로리(1인분 기준) : {{ this.foodkcal }}kcal</p>
-        <p>음식 설명</p>
+        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1); border:0.2px solid black; margin-top:10px; margin-bottom:10px;">
+        <p>칼로리(1인분) : {{ this.foodkcal }}kcal</p>
+        <p>음식 설명 :</p>
         <p>{{ this.foodexp }}</p>
+      </div>
         <button @click="close" style="border-radius:5px; background:white;">확인</button>
-        <button style="margin-left:20px; border-radius:5px; background:white;" @click="close">주변 맛집 찾기</button> 
+        <button style="margin-left:20px; border-radius:5px; background:white;" @click="selectrestaurant">주변 맛집 찾기</button> 
+        </div>
+        <div v-if="modalscene==1">
+        <h4>{{ this.foodname}} 맛집 리스트</h4>
+        <p style="font-size:13px;">{{ id }}님의 위치 : 서울특별시 광진구 능동로 120</p>
+        <img src="../assets/map.png" style="width:100%; border-radius:5px;"/>
+        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);">
+        <p style="margin-top:10px;">@@음식점 건대점</p>
+        <button style="background:white; border-radius:5px;">위치 보기</button>
+        <button style="margin-left:10px; background:white; border-radius:5px; margin-bottom:10px;">리뷰 보기</button>
+        </div>
+        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);">
+        <p style="margin-top:10px;">##음식점 건대점</p>
+        <button style="background:white; border-radius:5px;">위치 보기</button>
+        <button style="margin-left:10px; background:white; border-radius:5px; margin-bottom:10px;">리뷰 보기</button>
+        </div>
+        <button style="margin-top:20px; background: white; border-radius:5px; width:100%" @click="close">확인</button>
+      </div>
       </div>
     </div>
       <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
@@ -68,6 +88,7 @@ export default {
           foodexp:"",
           good:false,
           selectedfoodlist:[],
+          modalscene:0,
         }
     },
     props: {
@@ -109,10 +130,15 @@ export default {
         close(){
           this.modal = false
           this.good = false
+          this.modalscene=0
         },
         selectgood(){
           this.good = true
           this.selectedfoodlist.push(this.foodname)
+        },
+
+        selectrestaurant(){
+          this.modalscene=1
         },
     }
 
