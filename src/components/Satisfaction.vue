@@ -1,17 +1,25 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <div class="satisfaction">
-  <img src="../assets/booklet.png" style="width:60px; float:right; margin-top:-4px; margin-right:30px;"/><br><br>
+  <img src="../assets/booklet.png" style="width:60px; float:right; margin-top:-4.5px; margin-right:30px;"/><br><br>
   <div>
     <img src="../assets/review.png" style="background:white; width:40px; vertical-align: middle;">
-    <span style="margin-top:10px; margin-left:10px;">리뷰 작성</span>
+    <span style="margin-top:10px; margin-left:10px; font-family: 'Lobster', cursive; font-size:35px;">Review</span>
   </div>
-  <p style="font-family: 'Noto Sans KR', sans-serif; font-size:20px; margin-top:20px; font-weight:bold;">step1.<br>추천받은 음식들 중<br>지금 바로 먹을 음식이 있나요?</p>
-  <div style="font-size:16px; font-weight: bold;">
-  <input type="checkbox" id="yes" v-model="checkCrypto1" @click="checky">네
-  <input type="checkbox" id="no" v-model="checkCrypto2" @click="checkn">아니요
+  <div v-if="this.reviewnum==1">
+  <img src="../assets/step1.png" style="width:60px; float:left; margin-left:10%; margin-top:20px;"/><br>
+  <p style="font-family: 'Nanum Brush Script', cursive; font-size:25px; font-weight:bold; margin-bottom:50px; text-align:center;"><br><br>추천받은 음식들 중 지금 먹을 음식이 있나요?</p>
+  <div style="font-size:18px; font-weight: bold;">
+  <input style="zoom:2.0;" type="checkbox" id="yes" v-model="checkCrypto1" @click="checky">
+  <span style="margin-right:20%; font-size:25px; font-family: 'Lobster', cursive; margin-left:5px;">Yes</span>
+  <input style="zoom:2.0;" type="checkbox" id="no" v-model="checkCrypto2" @click="checkn">
+  <span style="font-size:25px; font-family: 'Lobster', cursive; margin-left:5px;">No</span><br>
+  <img src="../assets/next.png" style="width:20px; display:block; margin:0px auto; margin-top:80px;" @click="nextst"/>
   </div>
-  <p style="font-size:20px; margin-top:40px; margin-bottom:0px;">step2.<br>별점을 작성해주세요.</p>
+  </div>
+  <div v-if="this.reviewnum==2">
+  <img src="../assets/step2.png" style="width:60px; float:left; margin-left:10%; margin-top:20px;"/><br>
+  <p style="font-family: 'Nanum Brush Script', cursive; font-size:25px; font-weight:bold; margin-top:20px; margin-bottom:0px;"><br>별점을 입력해주세요.</p>
   <div class="star-rating space-x-4 mx-auto">
 	<input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
 	<label for="5-stars" class="star pr-4">★</label>
@@ -24,12 +32,16 @@
 	<input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
 	<label for="1-star" class="star">★</label>
   </div> 
-  <p style="font-size:20px; margin-top:15px;">step3.<br>건의사항 남겨주세요.</p>
+  <img src="../assets/next.png" style="width:20px; display:block; margin:0px auto; margin-top:80px;" @click="nextst"/>
+  </div>
+  <div v-if="this.reviewnum==3">
+    <img src="../assets/step3.png" style="width:60px; float:left; margin-left:10%; margin-top:20px;"/><br>
+  <p style="font-family: 'Nanum Brush Script', cursive; font-size:25px; font-weight:bold; margin-top:15px;"><br>건의사항 남겨주세요.</p>
   <div class="write">
-  <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg"></textarea>
+  <textarea class="write-box" @click="erase" @input="$emit('write', $event.target.value)" v-model="msg" style="margin-top:50px;"></textarea>
   <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="sbutton" @click="gosf" style="font-family:'Noto Sans KR', sans-serif;">제출</button>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="this.satismodal==true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header" style="font-family:'Gowun Dodum', sans-serif;">
         <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">만족도 점수</h5>
@@ -49,6 +61,7 @@
     </div>
   </div>
   </div>  
+</div>
 </div>
   <p><br></p>
     <!-- <button type="submit" class="sbutton" @click="gohome" style="font-family:'Noto Sans KR', sans-serif;">제출</button> -->
@@ -73,7 +86,8 @@ export default {
       score : 0,
       mystyle : {
         width : '0%',
-      }
+      },
+      reviewnum : 1,
     }
   },
   props : {
@@ -81,6 +95,10 @@ export default {
     id : String,
   },
   methods : {
+    nextst(){
+      this.reviewnum += 1
+    },
+
     erase() {
       this.msg="";
     },
@@ -119,6 +137,7 @@ export default {
     
     gohome(){
       this.$emit('change', 1)
+      this.reviewnum = 1
       console.log(this.satisfy, this.ratings, this.msg)
         axios.post('https://www.foodwebrs.com/satisfaction', { "satisfy":this.satisfy, "ratings":this.ratings, "msg":this.msg })
         .then((result) => {
@@ -226,6 +245,7 @@ export default {
 }
 
 .satisfaction {
+  width: 95%;
   border-bottom-right-radius:60px;
   border-top-left-radius: 70px;
   font-size:30px;
@@ -235,7 +255,7 @@ export default {
   margin-right: 10px;
   font-family:'Noto Sans KR', sans-serif;
   background-color: white;
-  border: 1.5px solid rgb(63, 64, 68);
+  border: 2px solid rgb(63, 64, 68);
 }
 
 </style>

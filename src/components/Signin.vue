@@ -13,8 +13,8 @@
     <div class="login">
     <img src="../assets/moto4.jpg" class="logo2"/>
       <header>
-        <h2 style="margin-top:0px; font-size:25px; text-align:center; font-family: 'Noto Sans KR', sans-serif; color:white">REK:UMMEND</h2>
-        <h2 style="margin-top:50px; font-size:25px; text-align:center; font-family: 'Noto Sans KR', sans-serif; color:white">회원가입(SignIn)</h2></header>
+        <h2 style="margin-top:0px; font-size:30px; text-align:center; font-family: 'Lobster', cursive; color:white">REK:UMMEND</h2>
+        <h2 style="margin-top:50px; font-size:25px; text-align:center; font-family: 'Noto Sans KR', sans-serif; color:white">회원가입</h2></header>
         <div class="white-bg" v-if="complete == false">
         <img class=le src="../assets/lerror.jpg"/>
         <h4>회원가입 실패!</h4>

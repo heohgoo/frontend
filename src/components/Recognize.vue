@@ -64,7 +64,7 @@
   <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16" style="display:block; margin:0px auto; width:50px; height:50px;">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
 </svg>
-  <button v-if="scene==0" class="recog_btn" style="margin-top:40px; width:100%; border:1px solid black;" @click="recognize">
+  <button v-if="scene==0" class="recog_btn" style="margin-top:20px; width:100%; border:1px solid black;" @click="recognize">
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <div v-if="scene==1" class="recognize"><p class="recog_info"><img src="../assets/answer.jpg" style="width:50px; margin-right:10px;"/>이 음식은 '{{ foodname }}'입니다.</p>
   <p class="truefalse" style="margin-top:10px; margin-left:45px;">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" style="display:block; margin:0px auto;" v-model="wmsg"></textarea>
@@ -119,7 +119,7 @@ export default {
             )
             .then((result) => {
                 this.foodname = result.data.class_name;
-                this.$emit('sfood', this.foodname)
+                // this.$emit('sfood', this.foodname)
                 console.log(this.foodname)
             })
             .catch((err) => {
@@ -130,8 +130,11 @@ export default {
         recommend() {
             this.isLoading = false;
             if (this.wmsg != ""&& this.wmsg !="음식 이름을 적어주세요."){
-                this.$emit('erasefood')
+                // this.$emit('erasefood')
                 this.$emit('sfood', this.wmsg)
+            }
+            else{
+              this.$emit('sfood', this.foodname)
             }
             this.$emit('back',1)
             this.isLoading = true;

@@ -12,7 +12,7 @@
     <body>
     <div class="login">
     <img src="../assets/moto4.jpg" class="logo2"/>
-      <header><h2 style="margin-top:0px; font-size:25px; text-align:center;font-family: 'Noto Sans KR', sans-serif; color:white">REK:UMMEND</h2></header>
+      <header><h2 style="margin-top:0px; font-size:30px; text-align:center; font-family: 'Lobster', cursive; color:white">REK:UMMEND</h2></header>
         <div class="white-bg" v-if="verified == false">
         <img class=le src="../assets/lerror.jpg"/>
         <h4>로그인 실패!</h4>
@@ -78,7 +78,6 @@ export default {
       }
       else{
         this.$emit("change", 0)
-        this.inputid = ""
         this.inputpw = ""
         this.verified = false
         setTimeout(() => {

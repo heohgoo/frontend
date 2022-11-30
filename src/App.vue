@@ -8,7 +8,7 @@
       <div class="d-flex">
   <div class="dropdown me-1" v-if="num==1">
     <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-bs-toggle="dropdown" aria-expanded="false" data-bs-offset="10,20">
-      Menu
+      메뉴
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
       <li><a class="dropdown-item" href="#" @click="removerecent">1.최근 선택한 음식을 리스트에서 지우기</a></li>
@@ -16,7 +16,8 @@
     </ul>
   </div>
 </div>
-      <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold;">&lt;뒤로</button>
+      <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold; border:0px solid black;">
+      <img src="./assets/뒤로가기.png" class="backbtn" style="margin-left:5px;"/></button>
     </ul>
     <ul class="header-button-right">
       <div class="idshow" style="font-family:'Roboto Mono', monospace; font-weight:bold; margin-right:25px;">
@@ -42,8 +43,8 @@
     <div class="black-bg2" style="text-align:center; font-family:'Gowun Dodum', sans-serif;" v-if="this.helpmodal==true">
       <div class="white-bg2">
         <h4>도움말</h4>
-        <p>음식 사진 인식과 사용자 정보를 통한<br>Content-based filtering, Collaborative filtering 기반<br>음식 추천 웹 어플리케이션
-        <br><br>#Vue.js, Flask, AWS EC2/RDS,<br>MySQL, Jupyter Notebook
+        <p>음식 사진 인식과 사용자 정보를 이용한<br>Content-based filtering, Collaborative filtering 기반<br>음식 추천 웹 어플리케이션
+        <br><br>Vue.js, Flask, AWS EC2/RDS,<br>MySQL, Jupyter Notebook<br>
         <br>오픈소스:ResNet(Microsoft)</p>
         <button style="background-color:white; border-radius:7px; width:100%" @click="closehm">확인</button>
       </div>
@@ -357,7 +358,7 @@ ul {
 .backbtn{
   height:40px;
   border-radius:5px; 
-  background:rgb(255,244,226); 
+  background:white; 
   color:black
 }
 
@@ -373,7 +374,7 @@ ul {
 .header {
   width: 100%;
   height: 150px;
-  background-color: rgb(255,255,255);
+  background-color: white;
   padding-bottom: 8px;
   position: sticky;
   top: 0;
@@ -442,7 +443,7 @@ ul {
 .backbtn{
   height:40px;
   border-radius:5px; 
-  background:rgb(255,244,226); 
+  background:white; 
   color:black
 }
 
@@ -458,7 +459,7 @@ ul {
 .header {
   width: 100%;
   height: 150px;
-  background-color: rgb(255,255,255);
+  background-color: white;
   padding-bottom: 8px;
   position: sticky;
   top: 0;
@@ -526,7 +527,7 @@ ul {
 .backbtn{
   height:40px;
   border-radius:5px; 
-  background:rgb(255,244,226); 
+  background:white; 
   color:black
 }
 

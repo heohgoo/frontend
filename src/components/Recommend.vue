@@ -13,18 +13,21 @@
   <div class="recommend">
     <div class="black-bg" v-if="modal == true">
       <div class="white-bg">
-        <div v-if="modalscene==0">
+        <div v-if="modalscene==0" style="font-weight:bold;">
         <h4>
-        <img :src='`${foodimgurl}`' style="width:50%; border-radius:10px; border:1px solid black;"></h4>
-        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:10px; border:2px solid rgb(63, 64, 68); background-color: white; font-size:20px; margin:0px auto;"
+        <img :src='`${foodimgurl}`' style="width:50%; border-radius:10px; border:0px solid black;"></h4>
+        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid rgb(63, 64, 68); background-color: white; font-size:18px; margin:0px auto;"
         @click="selectgood">
-            <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
-        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1); border:0.2px solid black; margin-top:10px; margin-bottom:10px;">
-        <p>칼로리(1인분) : {{ this.foodkcal }}kcal</p>
+            <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button>
+        <button v-if="this.good==true && this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid blue; background-color: blue; font-size:18px; margin:0px auto; color:white;"
+        @click="cancelgood">
+            <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button>  
+        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.35); border:0.5px solid white; margin-top:10px; margin-bottom:10px; background:white">
+        <p style="margin-top:5px;">칼로리(1인분) : {{ this.foodkcal }}kcal</p>
         <p>음식 설명 :</p>
         <p>{{ this.foodexp }}</p>
       </div>
-        <button @click="close" style="border-radius:5px; background:white;">확인</button>
+        <button @click="close" style="border-radius:5px; background:white; margin-top:10px;">확인</button>
         <button style="margin-left:20px; border-radius:5px; background:white;" @click="selectrestaurant">주변 맛집 찾기</button> 
         </div>
         <div v-if="modalscene==1">
@@ -45,7 +48,7 @@
       </div>
       </div>
     </div>
-      <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요.</h2>
+      <h2 class="headerlist">당신의 취향을 중점으로 추천해주는 음식들이에요</h2>
       <div class="foods">
         <div class="food-1" v-for="(a,i) in cbfoodlist" :key="i" :style="{ backgroundImage: `url(${ cburllist[i] })`}" @click="selected(cburllist[i], cbfoodlist[i], cbkcallist[i], cbexplist[i])">
         <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black;">{{ cbfoodlist[i] }}</span>
@@ -53,10 +56,10 @@
         <slot></slot>
         </div>
     </div>
-        <h4 class="headerlist">당신과 음식 취향이 비슷한 사람들이 만족했던 음식들이에요.</h4>
+        <h4 class="headerlist">당신과 음식 취향이 비슷한 사람들이 만족했던 음식들이에요</h4>
         <div class="foods">
         <div class="food-1" v-for="(a,i) in cffoodlist" :key="i" :style="{ backgroundImage: `url(${ cfurllist[i] })`}" @click="selected(cfurllist[i], cffoodlist[i], cfkcallist[i], cfexplist[i])">
-        <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black">{{ cffoodlist[i] }}</span>
+        <span style="font-family: 'Noto Sans KR', sans-serif; color: white; background:black;">{{ cffoodlist[i] }}</span>
         <!-- <input type="checkbox" style="width:18px; height:18px;"/> -->
         <slot></slot>
         </div>
@@ -109,7 +112,6 @@ export default {
             this.$emit('sendresult', this.selectedfoodlist.length*100/(this.cbfoodlist.length+this.cffoodlist.length))
             console.log(this.selectedfoodlist)
             console.log(this.id)
-            this.selectedfoodlist = [];
             axios.post('https://www.foodwebrs.com/user/updateitem', { "username":this.id, "selectedfoodlist":this.selectedfoodlist })
             .then((result) => {
             console.log("yes")
@@ -118,6 +120,7 @@ export default {
             .catch((err)=>{
               console.log(err)
             })
+            this.selectedfoodlist = [];
         },
         selected(foodimgurl, food, foodkcal, foodexp){
           this.modal = true
@@ -136,7 +139,10 @@ export default {
           this.good = true
           this.selectedfoodlist.push(this.foodname)
         },
-
+        cancelgood(){
+          this.good = false
+          this.selectedfoodlist.pop(this.foodname)
+        },
         selectrestaurant(){
           this.modalscene=1
         },
@@ -348,7 +354,7 @@ div {
   border-top-right-radius:30px;
   font-family: 'Gowun Dodum', sans-serif;
   background-color: white;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
+  /* box-shadow: 0px 0px 20px rgb(87, 87, 87); */
   background:rgb(255, 244, 226);
 }
 .tipletter{
@@ -503,11 +509,11 @@ div {
   border-top-right-radius:30px;
   font-family: 'Gowun Dodum', sans-serif;
   background-color: white;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
+  /* box-shadow: 0px 0px 20px rgb(87, 87, 87); */
   background:rgb(255, 244, 226);
 }
 .tipletter{
-    font-size:13px; 
+    font-size:12px; 
     font-family: 'Jua', sans-serif; 
     color:rgb(48,14,0);
     
@@ -658,11 +664,11 @@ div {
   border-top-right-radius:30px;
   font-family: 'Gowun Dodum', sans-serif;
   background-color: white;
-  box-shadow: 0px 0px 20px rgb(87, 87, 87);
+  /* box-shadow: 0px 0px 20px rgb(87, 87, 87); */
   background:rgb(255, 244, 226);
 }
 .tipletter{
-    font-size:15px; 
+    font-size:14px; 
     font-family: 'Jua', sans-serif; 
     color:rgb(48,14,0);
     

@@ -1,11 +1,18 @@
 <template>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-  <div class="d-flex justify-content-center">
-  <button v-if="isLoading==false" class="btn btn-dark" type="button" style="margin-top:0%" disabled>
+<div class="d-flex justify-content-center" v-if="isLoading==false">
+<button class="btn btn-dark" style="font-size:20px; margin-top:55%; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
+  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+  추천 리스트 받아오는 중...
+</button>
+</div>
+  <!-- <div class="d-flex justify-content-center" v-if="isLoading==true">
+  <button class="btn btn-dark" type="button" style="margin-top:0%" disabled>
   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
   로딩 중...
   </button>
-  </div>
+  </div> -->
+  <div v-if="isLoading==true">
   <div class="select">
     <ul class="select-button-plus">
       <input
@@ -18,21 +25,21 @@
       <label for="file" class="input-plus">음식 사진 선택</label>
     </ul>
     <img class="wait" src="../assets/갤러리.png" style="background-color:rgb(237,225,227);"/>
-    <p class="add">{{ id }}님의 갤러리에서 한 번 확인해볼까요?<br><br>@Instagram에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
+    <p class="add"><span style="font-weight:bold;">{{ id }}</span>님의 갤러리에서 한 번 확인해볼까요?<br><br>SNS에서 캡처했거나,<br>본인이 직접 찍은 사진 다 가능해요!</p>
     <p class="add" style="font-weight:bold">선택한 음식 리스트 : {{ selectedfoodlist }}</p>
   </div>
   <div class="recommend-button">
     <ul class="recommend-button-plus">
     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="cfrecommend" style="border:1px white; background:white; width:190px;">음식 추천</button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="this.cblisthave==false">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header" style="font-family:'Gowun Dodum', sans-serif;">
         <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">선택된 음식 리스트 없음</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-px" style="text-align:center; font-size:16px; margin-top:20px; margin-bottom:20px; font-family:'Gowun Dodum', sans-serif;">
-        현재 사용자로부터 선택된 음식 리스트가 없어,<br> Content-based filering 기반 <br>추천 음식 리스트는 산출되지 않습니다.<br>이대로 추천 결과를 받아올까요?
+        현재 사용자로부터 입력받은 음식 리스트가 없어,<br> Content-based filering 기반 <br>추천 음식 리스트는 산출되지 않습니다.<br>이대로 추천 결과를 받아올까요?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="continuerecommend">계속 진행</button>
@@ -60,6 +67,7 @@
     <p><br></p>
     </div>
     <p><br></p>
+  </div>
   </div>
 
 </template>
@@ -224,7 +232,7 @@ export default {
 
 .select {
   width: 100%;
-  margin-top:20px;
+  margin-top:10px;
   padding-bottom: 50px;
   background-color: rgb(237,225,227);
   border-top: 3px solid rgb(63, 64, 68);
@@ -314,7 +322,7 @@ export default {
 
 .select {
   width: 100%;
-  margin-top:20px;
+  margin-top:10px;
   padding-bottom: 50px;
   background-color: rgb(237,225,227);
   border-top: 3px solid rgb(63, 64, 68);
