@@ -55,7 +55,7 @@
         <select v-model="gender" class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Noto Sans KR', sans-serif; color: black" v-for="(item, index) in genderList">{{ item.value }}</option> 
         </select>
-        <p style="margin-top:20px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">5.연령대</p>
+        <p style="margin-top:20px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">5.연령</p>
         <select v-model="age" class="form-control" style="margin-top:0px; margin-left:2px">
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Noto Sans KR', sans-serif; color: black" v-for="(item, index) in ageList">{{ item.value }}</option> 
         </select>
@@ -64,16 +64,24 @@
           <option :key="index" :value="item.key" style="font-size:14px; font-family: 'Do Hyeon', sans-serif; color: black" v-for="(item, index) in foodList">{{ item.value }}</option> 
         </select> -->
         <div>
-        <p style="margin-top:20px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">6.평소 선호하는 음식류(여러 개를 선택할 수 있어요.)</p>
-        <div style="margin-top:20px; font-size:15px; font-family: 'Noto Sans KR', sans-serif; color:white; text-align:center">
-        <input type="checkbox" v-model="checkedValues" id="국밥" name="국밥" value="국밥류">국밥류
-        <input type="checkbox" v-model="checkedValues" id="탕찌개" name="탕찌개" value="탕찌개류">탕/찌개류
-        <input type="checkbox" v-model="checkedValues" id="고기" name="고기" value="고기류">고기류
-        <input type="checkbox" v-model="checkedValues" id="중식" name="중식" value="중식">중식
-        <input type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">양식
-        <input type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">샐러드 <br>
-        <input type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">패스트푸드
-        <input type="checkbox" v-model="checkedValues" id="분식" name="분식" value="분식">분식
+        <p style="margin-top:20px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white;">6.선호하는 음식류(여러 종류를 선택할 수 있어요)</p>
+        <div style="margin-top:10px; font-size:18px; font-family: 'Noto Sans KR', sans-serif; color:white; margin-left:5%;">
+        <input style="zoom:1.55;" type="checkbox" v-model="checkedValues" id="국밥" name="국밥" value="국밥류">
+        <span><img src="../assets/국밥.png" style="width:50px; height:50px; margin-left:5px;"/></span>국밥류<br>
+        <input style="zoom:1.55; margin-top:7px;" type="checkbox" v-model="checkedValues" id="탕찌개" name="탕찌개" value="탕찌개류">
+        <span><img src="../assets/찌개.png" style="width:50px; height:45px; margin-left:5px;"/></span>탕/찌개류<br>
+        <input style="zoom:1.55; margin-top:7px;" type="checkbox" v-model="checkedValues" id="고기" name="고기" value="고기류">
+        <span><img src="../assets/고기.png" style="width:50px; height:50px; margin-left:5px;"/></span>고기류<br>
+        <input style="zoom:1.55; margin-top:7px;" type="checkbox" v-model="checkedValues" id="중식" name="중식" value="중식">
+        <span><img src="../assets/중식.png" style="width:50px; height:50px; margin-left:5px; background:black;"/></span>중식<br>
+        <input style="zoom:1.55; margin-top:7px;" type="checkbox" v-model="checkedValues" id="양식" name="양식" value="양식">
+        <span><img src="../assets/양식.png" style="width:50px; height:50px; margin-left:5px; background:black;"/></span>양식<br>
+        <input style="zoom:1.55; margin-top:7px;" type="checkbox" v-model="checkedValues" id="샐러드" name="샐러드" value="샐러드">
+        <span><img src="../assets/샐러드.png" style="width:50px; margin-left:5px;"/></span>샐러드<br>
+        <input style="zoom:1.55; margin-top:7px;" type="checkbox" v-model="checkedValues" id="패스트푸드" name="패스트푸드" value="패스트푸드">
+        <span><img src="../assets/패스트푸드.png" style="width:50px; height:40px; margin-left:5px;"/></span>패스트푸드<br>
+        <input style="zoom:1.55; margin-top:7px; margin-bottom:10px;" type="checkbox" v-model="checkedValues" id="분식" name="분식" value="분식">
+        <span><img src="../assets/분식.png" style="width:50px; height:45px; margin-left:5px;"/></span>분식<br>
         </div>
         <!-- {{ checkedValues }} -->
         <button class="loginbtn" style="font-family: 'Noto Sans KR', sans-serif; margin-top:20px; width:100%; height:55px; border-radius:8px; border:1px solid black; background-color:rgb(255,244,226); color:black; font-size:17px;" @click="register">확인</button>
