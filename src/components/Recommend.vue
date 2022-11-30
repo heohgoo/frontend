@@ -24,8 +24,8 @@
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button>  
         <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.35); border:0.5px solid white; margin-top:10px; margin-bottom:10px; background:white">
         <p style="margin-top:5px;">칼로리(1인분) : {{ this.foodkcal }}kcal</p>
-        <p>음식 설명 :</p>
-        <p>{{ this.foodexp }}</p>
+        <p>음식 설명</p>
+        <p style="word-wrap:break-word; margin-top:15px;">{{ this.foodexp }}</p>
       </div>
         <button @click="close" style="border-radius:5px; background:white; margin-top:10px;">확인</button>
         <button style="margin-left:20px; border-radius:5px; background:white;" @click="selectrestaurant">주변 맛집 찾기</button> 

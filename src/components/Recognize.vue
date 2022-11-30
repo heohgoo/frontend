@@ -68,7 +68,7 @@
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <div v-if="(scene==1 && isrecog==false)">
   <div class="d-flex justify-content-center">
-<button class="btn btn-dark" style="font-size:20px; display:block; margin:0px auto; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
+<button class="btn btn-dark" style="font-size:20px; margin-top:20px; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
   음식명 인식 중...
 </button>
