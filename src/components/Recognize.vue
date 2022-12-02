@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    </head> -->
    <!-- build시 삽입 -->
+   <meta name="viewport" content="width=device-width,initial-scale=1">
    <div style="background-color:white; border:0px solid black; border-radius:10px;">
   <div class="upload-image" :style="`background-image:url(${foodimage})`">
   <div class="d-flex justify-content-center">
