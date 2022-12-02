@@ -75,6 +75,7 @@ import Recognize from './components/Recognize.vue';
 import Signin from './components/Signin.vue';
 import Footer from './components/Footer.vue';
 
+
 export default {
   name: 'App',
   data(){
@@ -107,6 +108,7 @@ export default {
     Signin,
     Footer,
   },
+
   methods: {
     signin(value){ 
       this.num=value;
