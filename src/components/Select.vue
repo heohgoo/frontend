@@ -1,9 +1,9 @@
 <template>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <div class="d-flex justify-content-center" v-if="isLoading==false">
-<button class="btn btn-dark" style="font-size:20px; margin-top:55%; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
+<button class="btn btn-dark" style="font-size:20px; margin-top:70%; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-  추천 리스트 받아오는 중...
+  추천 음식 리스트 받아오는 중...
 </button>
 </div>
   <!-- <div class="d-flex justify-content-center" v-if="isLoading==true">

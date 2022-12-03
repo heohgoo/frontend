@@ -35,11 +35,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="font-family:'Gowun Dodum',sans-serif;">
-        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">정보</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-px" style="text-align:center; font-size:16px; margin-top:20px; margin-bottom:20px; font-family:'Gowun Dodum', sans-serif;">
-        @Microsoft ResNet(Version.50),<br><br>-인식 가능한 음식 리스트-<br>국밥류(돼지국밥, 소머리국밥, 콩나물국밥),
+        Microsoft ResNet(Version.50),<br><br>-인식 가능한 음식 리스트-<br>국밥류(돼지국밥, 소머리국밥, 콩나물국밥),
         <br>탕류(설렁탕, 갈비탕, 매운탕, 감자탕, 마라탕),
         <br>찌개류(된장찌개, 김치찌개, 부대찌개, 순두부찌개),
         <br>마라샹궈, 버섯전골, 샤브샤브, 나베, 낙곱새,
@@ -54,31 +54,34 @@
         <br>김밥, 떡볶이, 죽
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="continuerecommend">확인</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="display:block; margin:0px auto; width:40%" @click="continuerecommend">확인</button>
       </div>
     </div>
   </div>
 </div>
   </div>
   <!-- <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px; border:2px solid black;"/> -->
-  <p v-if="scene==0" style="text-align:center; margin-top:30px; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요?</p>
-  <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" viewBox="0 0 16 16" style="display:block; margin:0px auto; width:50px; height:50px;">
+  <p v-if="scene==0" style="text-align:center; margin-top:15%; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요?</p>
+  <div class="wrap" v-if="(scene==0)">
+  <img src="../assets/arrowdown.png" class="arrowbottom" style="width:10%; margin-top:5%"/>
+  <!-- <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" :class="arrowbottom" viewBox="0 0 16 16" style="display:block; margin:0px auto; width:50px; height:50px;">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-</svg>
-  <button v-if="scene==0" class="recog_btn" style="margin-top:20px; width:100%; border:1px solid black;" @click="recognize">
+  </svg> -->
+  </div>
+  <button v-if="scene==0" class="recog_btn" style="margin-top:10%; width:50%; border:1px solid black;" @click="recognize">
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <div v-if="(scene==1 && isrecog==false)">
   <div class="d-flex justify-content-center">
-<button class="btn btn-dark" style="font-size:20px; margin-top:20px; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
+<button class="btn btn-dark" style="font-size:20px; margin-top:28%; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-  음식명 인식 중...
+  음식 사진 인식 중...
 </button>
 </div>
   </div>
   <div v-if="(scene==1 && isrecog==true)" class="recognize"><p class="recog_info"><img src="../assets/answer.jpg" style="width:50px; margin-right:10px;"/>이 음식은 '{{ foodname }}'입니다.</p>
   <p class="truefalse" style="margin-top:10px; margin-left:45px;">맞나요? 아니라면,</p><textarea class="truefalse" @click="erase" style="display:block; margin:0px auto;" v-model="wmsg"></textarea>
   </div>
-  <button v-if="(scene==1 && isrecog == true)" class="submit" style="width:100%;" @click="recommend">
+  <button v-if="(scene==1 && isrecog == true)" class="submit" style="width:50%; border:0.5px solid black; border-radius:8px;" @click="recommend">
     <img src="../assets/완료.png" style="width:40px; display:block; margin:0px auto;"/>
   </button>
   <!-- <button v-if="scene==1" class="submit" @click="[recommend(),loading()]">확인</button> -->
@@ -187,6 +190,15 @@ export default {
 </script>
 
 <style>
+.wrap {text-align: center; margin-top: 20px;}
+
+.arrowbottom {animation: motion 0.3s linear 0s infinite alternate; margin-top: 0;}
+        
+@keyframes motion {
+      0% {margin-top: 0px;}
+      100% {margin-top: 10px;}
+}
+
 .upload-image {
   height: 350px;
   width: 90%;

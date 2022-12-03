@@ -22,7 +22,7 @@
         <button v-if="this.good==true && this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid blue; background-color: blue; font-size:18px; margin:0px auto; color:white;"
         @click="cancelgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button>  
-        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.35); border:0.5px solid white; margin-top:10px; margin-bottom:10px; background:white">
+        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2); border:0.5px solid white; margin-top:10px; margin-bottom:10px; background:white; padding:7px;">
         <p style="margin-top:5px;">칼로리(1인분) : {{ this.foodkcal }}kcal</p>
         <p>음식 설명</p>
         <p style="word-wrap:break-word; margin-top:15px;">{{ this.foodexp }}</p>
@@ -92,6 +92,9 @@ export default {
           good:false,
           selectedfoodlist:[],
           modalscene:0,
+          latitude: '',
+          longtitude: '',
+          textContent: '',
         }
     },
     props: {
@@ -145,6 +148,22 @@ export default {
         },
         selectrestaurant(){
           this.modalscene=1
+        },
+        geofind() {
+            if(!("geolocation" in navigator)) {
+            this.textContent = 'Geolocation is not available.';
+            return;
+            }
+            this.textContent = 'Locating...'
+            
+            // get position
+            navigator.geolocation.getCurrentPosition(pos => {
+            this.latitude = pos.coords.latitude;
+            this.longitude = pos.coords.longitude;
+            this.textContent = 'Your location data is ' + this.latitude + ', ' + this.longitude
+            }, err => {
+            this.textContent = err.message;
+            })
         },
     }
 

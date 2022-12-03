@@ -20,7 +20,7 @@
         <h4>회원가입 실패!</h4>
         <p>이미 가입한 회원이거나 정보를 잘못 입력하였습니다.</p>
         </div>
-        <div class="input-box" style="margin-top:60px;">
+        <div class="input-box" style="margin-top:60px; z-index:0">
           <input
             id="username"
             v-model="inputid"

@@ -1,9 +1,9 @@
 <template>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <div class="header">
+  <div class="header" style="z-index:1">
     <ul class="header-button-right">
     </ul>
-    <img src="./assets/applogo.jpg" class="logo" @click="first"/>
+    <img src="./assets/applogo.jpg" class="logo"/>
     <ul class="header-button-left">
       <div class="d-flex">
   <div class="dropdown me-1" v-if="num==1">
@@ -13,21 +13,32 @@
     <ul class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
       <li><a class="dropdown-item" href="#" @click="removerecent">1.최근 선택한 음식을 리스트에서 지우기</a></li>
       <li><a class="dropdown-item" href="#" @click="removelist">2.음식 리스트 모두 지우기</a></li>
+      <li><a class="dropdown-item" href="#" @click="logout">3.로그아웃</a></li>
     </ul>
   </div>
 </div>
-      <button v-if="num > 1 && num != 4 && num != 5 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold; border:0px solid black;">
-      <img src="./assets/뒤로가기.png" class="backbtn" style="margin-left:5px;"/></button>
+      <!-- <div v-if="(num==0 && fullpage==false)">
+      <button @click="fullpageChange" style="background:white; border-radius:4px; border:1px solid white;">
+      <img src="./assets/full.png" style="width:30px; margin-left:20%">
+      </button>
+      </div>
+      <div v-if="(num==0 && fullpage==true)">
+      <button @click="fullpageChange" style="background:white; border-radius:4px; border:1px solid white;">
+      <img src="./assets/exit.png" style="width:23px; margin-left:30%">
+      </button>
+      </div> -->
+      <button v-if="num > 1 && num != 4 && num != 3" @click="recomback" class="backbtn" style="font-weight:bold; border:0px solid black;">
+      <img src="./assets/뒤로가기.png" class="backbtn" style=""/></button>
     </ul>
     <ul class="header-button-right">
-      <div class="idshow" style="font-family:'Roboto Mono', monospace; font-weight:bold; margin-right:25px;">
+      <div class="idshow" style="font-family:'Roboto Mono',monospace; font-weight:bold; margin-right:25px;">
       ID:<br>
       {{ id }}
       </div>
     </ul>
     </div>
   <div>
-    <div class="black-bg2" v-if="this.usagemodal==true">
+    <div class="black-bg2" style="z-index:2" v-if="this.usagemodal==true">
       <div class="white-bg2" style="text-align:center; font-family:'Gowun Dodum', sans-serif;">
         <h4>사용설명서/작동 방식</h4>
         <p>1. '회원가입' 버튼을 눌러 회원가입을 한다.</p>
@@ -40,7 +51,7 @@
         <button style="background-color:white; border-radius:7px; width:100%" @click="closeum">확인</button>
       </div>
     </div>
-    <div class="black-bg2" style="text-align:center; font-family:'Gowun Dodum', sans-serif;" v-if="this.helpmodal==true">
+    <div class="black-bg2" style="text-align:center; font-family:'Gowun Dodum', sans-serif; z-index:2" v-if="this.helpmodal==true">
       <div class="white-bg2">
         <h4>도움말</h4>
         <p>음식 사진 인식과 사용자 정보를 이용한<br>Content-based filtering, Collaborative filtering 기반<br>음식 추천 웹 어플리케이션
@@ -49,7 +60,7 @@
         <button style="background-color:white; border-radius:7px; width:100%" @click="closehm">확인</button>
       </div>
     </div>
-  <Login v-if="num == 0 && this.usagemodal == false && this.helpmodal == false" @change="change" @signin="signin" @idinput="idinput"/>
+  <Login v-if="num == 0" @change="change" @signin="signin" @idinput="idinput"/>
   <Select v-if="num == 1" :id="id" num="num" @change="change" @move="move" @cflist="cflist" @removelist="removelist" @cffood="cffood" @recog="recog" @foodupload="foodupload" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl"
   @cfkcal="cfkcal" @cfexp="cfexp" @cbkcal="cbkcal" @cbexp="cbexp" @back="back" :foodimage="foodimage" :selectedfoodlist="selectedfoodlist"/>
   <!-- <Recommend v-if="num == 2" num="num" @change="change" /> -->
@@ -58,7 +69,7 @@
   <Satisfaction v-if="num == 3" :id="id" num="num" :loverate="loverate" @change="change"/>
   <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @sfood="sfood" @erasefood="erasefood" @goselect="goselect" @back="back" @changefoodurl="changefoodurl" @changefoodfile="changefoodfile"/>
   <!-- <Recognize v-if="num == 4" num="num" :foodimage="foodimage" :foodfile="foodfile" @back="back" @cbfoodlists="cbfoodlists" @cbfoodurl="cbfoodurl" @sfood="sfood" @erasefood="erasefood" :selectedfoodlist="selectedfoodlist"/> -->
-  <Signin v-if="num == 5 && this.usagemodal == false && this.helpmodal == false" num="num" @change="change"/>
+  <Signin v-if="num == 5" num="num" @change="change"/>
   <!-- @foodlists="foodlists" -->
   <Footer @um="um" @hm="hm"/>
   </div>
@@ -114,8 +125,13 @@ export default {
       this.num=value;
     },
 
+    logout(){
+      this.num=0;
+      this.id="";
+    },
     um(value){
       this.usagemodal=value;
+      window.scrollTo(0,0);
     },
 
     closeum(){
@@ -124,6 +140,7 @@ export default {
 
     hm(value){
       this.helpmodal=value;
+      window.scrollTo(0,0)
     },
 
     closehm(){
@@ -174,6 +191,14 @@ export default {
       this.num = 0
       this.id = ""
       this.selectedfoodlist.splice(0, this.selectedfoodlist.length)
+      this.cffoodlist = []
+      this.cfurllist = []
+      this.cfexplist = []
+      this.cfkcallist = []
+      this.cbfoodlist = []
+      this.cburllist = []
+      this.cbexplist = []
+      this.cbkcallist = []
     },
 
     foodupload(value) {
@@ -230,7 +255,12 @@ export default {
     },
 
     recomback() {
-      this.num -= 1
+      if (this.num != 5){
+        this.num -= 1
+      }
+      else {
+        this.num = 0
+      }
       this.cffoodlist = []
       this.cfurllist = []
       this.cfexplist = []
@@ -239,6 +269,8 @@ export default {
       this.cburllist = []
       this.cbexplist = []
       this.cbkcallist = []
+      this.usagemodal = false
+      this.helpmodal = false
     },
 
     goselect() {
@@ -365,7 +397,7 @@ ul {
 }
 
 .logo {
-  width: 140px;
+  width: 40%;
   margin: auto;
   display: block;
   position: absolute;
@@ -385,7 +417,7 @@ ul {
   color: black;
   font-style: bold;
   float: left;
-  width: 80px;
+  width: 30%;
   font-size:13px;
   padding-left: 15px;
   font-family: 'Gowun Dodum', sans-serif;
@@ -450,7 +482,7 @@ ul {
 }
 
 .logo {
-  width: 200px;
+  width: 40%;
   margin: auto;
   display: block;
   position: absolute;
@@ -470,18 +502,18 @@ ul {
   color: black;
   font-style: bold;
   float: left;
-  width: 80px;
-  font-size:13px;
+  width: 30%;
+  font-size:15px;
   padding-left: 15px;
   font-family: 'Gowun Dodum', sans-serif;
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .header-button-right {
   color: black;
   font-family: 'Jua', sans-serif;
   float: right;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-left: -20px;
   margin-right: 0px;
 }
@@ -534,7 +566,7 @@ ul {
 }
 
 .logo {
-  width: 200px;
+  width: 40%;
   margin: auto;
   display: block;
   position: absolute;
@@ -554,18 +586,18 @@ ul {
   color: black;
   font-style: bold;
   float: left;
-  width: 80px;
-  font-size:13px;
+  width: 30%;
+  font-size:17px;
   padding-left: 15px;
   font-family: 'Gowun Dodum', sans-serif;
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 35px;
 }
 .header-button-right {
   color: black;
   font-family: 'Jua', sans-serif;
   float: right;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-left: -15px;
   margin-right: 0px;
 }
