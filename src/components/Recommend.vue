@@ -16,22 +16,23 @@
         <div v-if="modalscene==0" style="font-weight:bold;">
         <h4>
         <img :src='`${foodimgurl}`' style="width:50%; border-radius:10px; border:0px solid black;"></h4>
-        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid rgb(63, 64, 68); background-color: white; font-size:18px; margin:0px auto;"
+        <button v-if="this.good==false && !this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid rgb(63, 64, 68); background-color: white; font-size:18px; color:black; margin:0px auto;"
         @click="selectgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button>
         <button v-if="this.good==true && this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid blue; background-color: blue; font-size:18px; margin:0px auto; color:white;"
         @click="cancelgood">
-            <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button>  
+            <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
+        <button class="kakao" @click="kakaoLink" style="margin-left:4%; border-radius:5px; border:2px solid black; background:white; font-size:18px; background:rgb(249,224,0);"><img src="../assets/kakao.png" style="width:20px; height:20px; margin-bottom:4px;"/>공유</button>
         <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2); border:0.5px solid white; margin-top:10px; margin-bottom:10px; background:white; padding:7px;">
         <p style="margin-top:5px;">칼로리(1인분) : {{ this.foodkcal }}kcal</p>
-        <p>음식 설명</p>
+        <p>음식 설명 : </p>
         <p style="word-wrap:break-word; margin-top:15px;">{{ this.foodexp }}</p>
       </div>
-        <button @click="close" style="border-radius:5px; background:white; margin-top:10px;">확인</button>
-        <button style="margin-left:20px; border-radius:5px; background:white;" @click="selectrestaurant">주변 맛집 찾기</button> 
+        <button @click="close" style="border-radius:5px; background:white; margin-top:10px; color:black; border:1.5px solid black; font-weight:bold;">확인</button>
+        <button style="margin-left:20px; border-radius:5px; background:white; color:black; border:1.5px solid black; font-weight:bold;" @click="selectrestaurant">주변 맛집 찾기</button> 
         </div>
         <div v-if="modalscene==1">
-        <h4>{{ this.foodname}} 맛집 리스트</h4>
+        <h4>-{{ this.foodname}} 맛집들-</h4>
         <p style="font-size:13px;">{{ id }}님의 위치 : 서울특별시 광진구 능동로 120</p>
         <img src="../assets/map.png" style="width:100%; border-radius:5px;"/>
         <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);">
@@ -66,7 +67,7 @@
     </div>
     <!-- <button class="rebutton" @click="a">다시추천</button> -->
     <p class="tipletter" style="text-align:center; font-family:'Noto Sans KR', sans-serif;"><br><br><br>마음에 드는 음식이 있으면 음식 이미지를 누르세요!</p>
-    <button class="newbutton" style="margin-top:0px; margin-right:20px; font-family:'Noto Sans KR', sans-serif; background:white;" @click="next">리뷰 남기기</button>
+    <button class="newbutton" style="margin-top:0px; margin-right:20px; font-family:'Noto Sans KR', sans-serif; background:white; color:black;" @click="next">리뷰 남기기</button>
   </div>
   <div class="footer">
         <div class="tip">
@@ -82,6 +83,13 @@ import axios from "axios"
 
 export default {
     name : 'Recommend',
+    head() {
+            return {
+                script: [
+                    {src: '//developers.kakao.com/sdk/js/kakao.min.js'},
+                ],
+            }
+    },
     data(){
         return{
           modal:false,
@@ -127,6 +135,7 @@ export default {
         },
         selected(foodimgurl, food, foodkcal, foodexp){
           this.modal = true
+          window.scrollTo(0,0)
           this.foodname = food
           this.foodimgurl = foodimgurl
           this.foodkcal = foodkcal
@@ -165,6 +174,13 @@ export default {
             this.textContent = err.message;
             })
         },
+      kakaoLink() {
+        window.Kakao.Share.sendCustom({
+        templateId: 86833,
+        // 카카오톡이 설치 되지 않았을때 마켓으로 이동
+        installTalk: true
+      });
+    }
     }
 
 }

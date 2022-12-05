@@ -30,7 +30,7 @@
   <label for="file">
   <img v-if="scene==0" src="../assets/다시선택.png" style="width:40px; margin-left:20px; margin-top:10px; margin-bottom:10px;">
   </label>
-  <img src="../assets/설명.png"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:40px; margin-left:20px; margin-top:10px; margin-bottom:10px;"/>
+  <img src="../assets/설명.png" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:40px; margin-left:20px; margin-top:10px; margin-bottom:10px;"/>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="this.recogmodal==false">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -62,17 +62,17 @@
   </div>
   <!-- <img v-if="scene==0" src="../assets/딥러닝.png" style="width:70px; display:block; margin:0px auto; margin-top:20px; border:2px solid black;"/> -->
   <p v-if="scene==0" style="text-align:center; margin-top:15%; font-family:'Noto Sans KR', sans-serif;">한 번 확인해볼까요?</p>
-  <div class="wrap" v-if="(scene==0)">
-  <img src="../assets/arrowdown.png" class="arrowbottom" style="width:10%; margin-top:5%"/>
+  <div class="wrap" v-if="(scene==0)" style="margin-top:10%;">
+  <img src="../assets/arrowdown.png" class="arrowbottom" style="width:10%;"/>
   <!-- <svg v-if="scene==0" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle-fill" :class="arrowbottom" viewBox="0 0 16 16" style="display:block; margin:0px auto; width:50px; height:50px;">
   <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
   </svg> -->
   </div>
-  <button v-if="scene==0" class="recog_btn" style="margin-top:10%; width:50%; border:1px solid black;" @click="recognize">
+  <button v-if="scene==0" class="recog_btn" style="margin-top:5%; width:50%; border:1px solid black; margin-bottom:5%;" @click="recognize">
     <img src="../assets/확인.png" style="width:40px; display:block; margin:0px auto;"/></button>
   <div v-if="(scene==1 && isrecog==false)">
   <div class="d-flex justify-content-center">
-<button class="btn btn-dark" style="font-size:20px; margin-top:28%; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
+<button class="btn btn-dark" style="font-size:20px; margin-top:5%; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
   음식 사진 인식 중...
 </button>

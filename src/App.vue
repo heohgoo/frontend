@@ -149,6 +149,7 @@ export default {
 
     change(value){ 
       this.num=value;
+      window.scrollTo(0,0);
     },
 
     idinput(value){
@@ -261,6 +262,7 @@ export default {
       else {
         this.num = 0
       }
+      window.scrollTo(0,0);
       this.cffoodlist = []
       this.cfurllist = []
       this.cfexplist = []
@@ -269,6 +271,7 @@ export default {
       this.cburllist = []
       this.cbexplist = []
       this.cbkcallist = []
+      this.selectedfoodlist = []
       this.usagemodal = false
       this.helpmodal = false
     },
