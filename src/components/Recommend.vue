@@ -22,7 +22,7 @@
         <button v-if="this.good==true && this.selectedfoodlist.includes(this.foodname)" style="border-radius:5px; border:2px solid blue; background-color: blue; font-size:18px; margin:0px auto; color:white;"
         @click="cancelgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
-        <button class="kakao" @click="kakaoLink" style="margin-left:4%; border-radius:5px; border:2px solid black; background:white; font-size:18px; background:rgb(249,224,0); margin-top:10px;"><img src="../assets/kakao.png" style="width:20px; height:20px; margin-bottom:4px;"/>공유</button>
+        <button id="kakaotalk-sharing-btn" @click="kakaoLink" style="margin-left:4%; border-radius:5px; border:2px solid black; background:white; font-size:18px; background:rgb(249,224,0); margin-top:10px;"><img src="../assets/kakao.png" style="width:20px; height:20px; margin-bottom:4px;"/>공유</button>
         <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2); border:0.5px solid white; margin-top:50px; margin-bottom:10px; background:white; padding:7px;">
         <p style="margin-top:5px;">칼로리(1인분) : {{ this.foodkcal }}kcal</p>
         <p>음식 설명 : </p>
@@ -300,11 +300,41 @@ export default {
             })
         },
       kakaoLink() {
-        window.Kakao.Share.sendCustom({
-        templateId: 86833,
-        // 카카오톡이 설치 되지 않았을때 마켓으로 이동
-        installTalk: true
-      });
+        // window.Kakao.Share.sendCustom({
+        //   templateId: 86833,
+        //   // 카카오톡이 설치 되지 않았을때 마켓으로 이동
+        //   installTalk: true
+        // });
+        window.Kakao.Share.createDefaultButton({
+          container: '#kakaotalk-sharing-btn',
+          objectType: 'feed',
+          content: {
+            title: '오늘 이거 어때? => #'+this.foodname,
+            description: this.foodexp,
+            imageUrl:
+            this.foodimgurl,
+            link: {
+              mobileWebUrl: 'https://heohgoo.github.io',
+              webUrl: 'https://heohgoo.github.io',
+            },
+          },
+      buttons: [
+      {
+        title: '웹으로 이동',
+        link: {
+          mobileWebUrl: 'https://heohgoo.github.io',
+          webUrl: 'https://heohgoo.github.io',
+        },
+      },
+      { 
+        title: '앱으로 이동',
+        link: {
+          mobileWebUrl: 'https://heohgoo.github.io',
+          webUrl: 'https://heohgoo.github.io',
+        },
+      },
+    ],
+    });
     },
     initMap() {
       var container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
