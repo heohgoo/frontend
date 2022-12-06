@@ -1,7 +1,7 @@
 <template>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <div class="d-flex justify-content-center" v-if="isLoading==false">
-<button class="btn btn-dark" style="font-size:20px; font-family: 'Gowun Dodum',sans-serif;" type="button" disabled >
+<button class="btn btn-dark" style="font-size:20px; font-family: 'Gowun Dodum',sans-serif; margin-top:20%" type="button" disabled >
   <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
   추천 음식 리스트 받아오는 중...
 </button>
