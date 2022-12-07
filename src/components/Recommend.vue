@@ -12,7 +12,7 @@
     </div> -->
   <div class="recommend">
     <div class="black-bg" v-if="modal == true">
-      <div class="white-bg" style="height:600px;">
+      <div class="white-bg" style="height:530px;">
         <div v-if="modalscene==0" style="font-weight:bold;">
         <h4>
         <img :src='`${foodimgurl}`' style="width:150px; height:150px; border-radius:10px; border:0px solid black;"></h4>
@@ -23,18 +23,18 @@
         @click="cancelgood">
             <img src="../assets/좋아요.png" style="width:20px; height:20px;"/>좋아요</button> 
         <button id="kakaotalk-sharing-btn" @click="kakaoLink" style="margin-left:4%; border-radius:5px; border:2px solid black; background:white; font-size:18px; background:rgb(249,224,0); margin-top:10px;"><img src="../assets/kakao.png" style="width:20px; height:20px; margin-bottom:4px;"/>공유</button>
-        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2); border:0.5px solid white; margin-top:50px; margin-bottom:10px; background:white; padding:7px;">
+        <div style="border-radius:5px; box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2); border:0.5px solid white; margin-top:20px; margin-bottom:10px; background:white; padding:7px;">
         <p style="margin-top:5px;">칼로리(1인분) : {{ this.foodkcal }}kcal</p>
         <p>음식 설명 : </p>
-        <p style="word-wrap:break-word; margin-top:15px;">{{ this.foodexp }}</p>
+        <p style="word-wrap:break-word; margin-top:15px; font-size:15px;">{{ this.foodexp }}</p>
       </div>
         <button @click="close" style="border-radius:5px; background:white; margin-top:10px; color:black; border:1.5px solid black; font-weight:bold;">확인</button>
         <button style="margin-left:20px; border-radius:5px; background:white; color:black; border:1.5px solid black; font-weight:bold;" @click="selectrestaurant">주변 맛집 찾기</button> 
         </div>
-        <div id="map" style="width:300px; height:300px; display:block; margin:0px auto; z-index:0"></div>
+        <div id="map" style="width:100%; height:220px; display:block; margin:0px auto; z-index:0"></div>
         <div v-if="modalscene==1">
-        <h4 style="margin-top:20px;">-{{ this.foodname}} 맛집 찾기-</h4>
-        <p style="font-size:13px;">{{ id }}님의 위치 : {{ where }}
+        <h4 style="margin-top:10px;">-{{ this.foodname}} 맛집 찾기-</h4>
+        <p style="font-size:13px;"><span style="font-weight:bold">{{ id }}</span>님의 위치 : <span style="font-weight:bold">{{ where }}</span>
         <br><br>마커를 누르면 식당명/위치/전화번호가 나와요.<br>
             줌인으로 더 자세한 식당 위치를 알 수 있어요.<br>
             <span style="font-weight:bold;">투명한 마커가 본인 위치에요.</span></p>
@@ -49,7 +49,7 @@
         <button style="background:white; border-radius:5px;">위치 보기</button>
         <button style="margin-left:10px; background:white; border-radius:5px; margin-bottom:10px;">리뷰 보기</button>
         </div> -->
-        <button style="margin-top:20px; background: white; border-radius:5px; width:100%" @click="close">확인</button>
+        <button style="margin-top:0px; background: white; border-radius:5px; width:100%" @click="close">확인</button>
       </div>
       </div>
     </div>
@@ -197,7 +197,7 @@ export default {
           this.modalscene=1
           // 마커를 클릭하면 장소명을 표출할 인포윈도우 입니다
           var infowindow = new kakao.maps.InfoWindow({zIndex:1});
-          console.log(this.latitude)
+          console.log(this.latitude, this.longitude)
           var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = {
              center: new kakao.maps.LatLng(this.latitude, this.longitude), // 지도의 중심좌표
@@ -211,10 +211,9 @@ export default {
           var coord = new kakao.maps.LatLng(this.latitude, this.longitude);
           var callback = (result, status) => {
               if (status === kakao.maps.services.Status.OK) {
-                  console.log(result[0].road_address.address_name);
+                  console.log(result[0])
                   this.where = result[0].road_address.address_name;
                   this.rwhere = result[0].address.region_1depth_name+' '+result[0].address.region_2depth_name+' '+result[0].address.region_3depth_name
-                  console.log(this.rwhere)
               }
           };
           var marker2 = new kakao.maps.Marker({ 
@@ -522,10 +521,12 @@ div {
   box-sizing: border-box;
 }
 .black-bg {
-  width: 95%; height:80%;
+  width: 100%; height:100%;
   background: rgba(0,0,0,0.5);
   position: absolute; 
-  padding:20px;
+  padding-top:20px;
+  padding-left:0px;
+  padding-right:0px;
   margin:auto;
 }
 .white-bg {
@@ -559,8 +560,8 @@ div {
 .recommend{
   margin-top:20px;
   padding-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
   border: 2px solid rgb(63, 64, 68);
   border-top-right-radius:30px;
   font-family: 'Gowun Dodum', sans-serif;
@@ -677,10 +678,12 @@ div {
   box-sizing: border-box;
 }
 .black-bg {
-  width: 390px; height:70%;
+  width: 100%; height:70%;
   background: rgba(0,0,0,0.5);
   position: absolute; 
-  padding:20px;
+  padding-top:20px;
+  padding-left:0px;
+  padding-right:0px;
   margin:auto;
 }
 .white-bg {
@@ -714,8 +717,8 @@ div {
 .recommend{
   margin-top:20px;
   padding-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
   border: 2px solid rgb(63, 64, 68);
   border-top-right-radius:30px;
   font-family: 'Gowun Dodum', sans-serif;
@@ -824,7 +827,7 @@ border: 1.5px solid rgb(63, 64, 68);
 }
 }
 
-@media screen and (min-width:500px) {
+@media screen and (min-width:1500px) {
 body {
   margin : 0;
 }
@@ -832,10 +835,12 @@ div {
   box-sizing: border-box;
 }
 .black-bg {
-  width: 435px; height:70%;
+  width: 455px; height:70%;
   background: rgba(0,0,0,0.5);
   position: absolute; 
-  padding:20px;
+  padding-top:20px;
+  padding-left:0px;
+  padding-right:0px;
   margin:auto;
 }
 .white-bg {
@@ -869,8 +874,8 @@ div {
 .recommend{
   margin-top:20px;
   padding-bottom: 20px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0px;
+  margin-right: 0px;
   border: 2px solid rgb(63, 64, 68);
   border-top-right-radius:30px;
   font-family: 'Gowun Dodum', sans-serif;

@@ -196,7 +196,7 @@ export default {
         
 @keyframes motion {
       0% {margin-top: 0px;}
-      100% {margin-top: 10px;}
+      100% {margin-top: 5px;}
 }
 
 .upload-image {
