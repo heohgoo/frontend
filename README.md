@@ -4,4 +4,4 @@
 
 ### Vue.js v.2.x, Bootstrap v.5.0
 
-### Kakaomap API, Geolocation API(HTML5)
+Open API: Kakaomap API, Geolocation API(HTML5)
